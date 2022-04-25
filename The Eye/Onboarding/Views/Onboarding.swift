@@ -11,5 +11,6 @@ import SwiftUI
 struct Onboarding: View {
     var body: some View {
         Text("Onboarding")
+        Text("Onboarding2")
     }
 }
