@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct Onboarding: View {
-    
+    @Binding var didOnboarding: Bool
     @State var offset: CGFloat = 0
     //@State var titleButtonNext: String = "Next"
     var i: Int = 0
@@ -69,16 +69,6 @@ struct Onboarding: View {
         .ignoresSafeArea(.container, edges: .all)
         .overlay(
             HStack{
-                Button{
- 
-                } label: {
-                    Text("Skip")
-                        .fontWeight(.semibold)
-                        .foregroundColor(.white)
-                    
-                } // button
-                
-                // indicator
                 HStack {
                     ForEach(boardingScreen.indices, id: \.self){index in
                         Circle()
@@ -87,17 +77,17 @@ struct Onboarding: View {
                             .frame(width: 10, height: 10)
                             .scaleEffect(index == getIndex() ? 1.3 : 0.85)
                             .animation(.easeInOut, value: getIndex())
+                            .padding(.leading)
+
                     }
                 }
                 .frame(maxWidth: .infinity)
                 
                 Button{
-                    // setting mac offset..
-                    // max 3 screen so offset is 2
-                    offset = min(offset + getScreenBounds().width, getScreenBounds().width*2)
-                    print(offset)
+                    //isOnboarding = false
+                    didOnboarding.toggle()
                 } label: {
-                    Text("Next")
+                    Text("Skip")
                         .fontWeight(.semibold)
                         .foregroundColor(.white)
                     
@@ -129,11 +119,6 @@ struct Onboarding: View {
     
 } // struct
 
-struct Onboarding_View: PreviewProvider {
-    static var previews: some View {
-        Onboarding()
-    }
-}
 
 // extending view to get screen bounds
 extension View {

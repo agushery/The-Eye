@@ -9,6 +9,7 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
+    @State var didOnboarding: Bool = true
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
@@ -38,6 +39,9 @@ struct ContentView: View {
                     }
                 }
             }
+            .fullScreenCover(isPresented: $didOnboarding, content: {
+                Onboarding(didOnboarding: $didOnboarding)
+            })
             Text("Select an item")
         }
     }

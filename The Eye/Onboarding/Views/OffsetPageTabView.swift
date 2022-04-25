@@ -62,8 +62,6 @@ struct OffsetPageTabView<Content: View> : UIViewRepresentable {
         if currentView != offset {
             print("Slide")
             uiView.setContentOffset(CGPoint(x: offset, y: 0), animated: true)
-        } else {
-            print("Stop")
         }
     }
     
