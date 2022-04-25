@@ -39,9 +39,6 @@ struct ContentView: View {
                     }
                 }
             }
-            .fullScreenCover(isPresented: $didOnboarding, content: {
-                Onboarding(didOnboarding: $didOnboarding)
-            })
             Text("Select an item")
         }
     }

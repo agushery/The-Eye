@@ -11,9 +11,9 @@ import SwiftUI
 struct MainView: View {
     var body: some View {
         TabView {
-            ContentView()
+            HomeView()
                 .tabItem{
-                    Image(systemName: "chart.xyaxis.line")
+                    Image(systemName: "menucard")
                     Text("Chart")
                 }
             ContentView()

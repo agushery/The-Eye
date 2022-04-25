@@ -17,6 +17,7 @@
 		65296D9F2816547D00D9305F /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65296D9E2816547D00D9305F /* Onboarding.swift */; };
 		65296DA1281654B300D9305F /* BoardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65296DA0281654B300D9305F /* BoardingScreen.swift */; };
 		65296DA32816581D00D9305F /* OffsetPageTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65296DA22816581D00D9305F /* OffsetPageTabView.swift */; };
+		65296DA82816B01200D9305F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65296DA72816B01200D9305F /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		65296D9E2816547D00D9305F /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		65296DA0281654B300D9305F /* BoardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardingScreen.swift; sourceTree = "<group>"; };
 		65296DA22816581D00D9305F /* OffsetPageTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetPageTabView.swift; sourceTree = "<group>"; };
+		65296DA72816B01200D9305F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,10 +65,11 @@
 		65296D73281645E100D9305F /* The Eye */ = {
 			isa = PBXGroup;
 			children = (
+				65296D9A28164E5900D9305F /* ContentView */,
+				65296DA62816AFF600D9305F /* Home */,
 				65296D9B28164E7400D9305F /* Onboarding */,
 				65296D74281645E100D9305F /* The_EyeApp.swift */,
 				65296D872816460800D9305F /* MainView.swift */,
-				65296D9A28164E5900D9305F /* ContentView */,
 				65296D78281645E300D9305F /* Assets.xcassets */,
 				65296D7F281645E300D9305F /* The_Eye.xcdatamodeld */,
 				65296D7A281645E300D9305F /* Preview Content */,
@@ -115,6 +118,14 @@
 				65296DA22816581D00D9305F /* OffsetPageTabView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		65296DA62816AFF600D9305F /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				65296DA72816B01200D9305F /* HomeView.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -187,6 +198,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65296DA82816B01200D9305F /* HomeView.swift in Sources */,
 				65296DA32816581D00D9305F /* OffsetPageTabView.swift in Sources */,
 				65296D9F2816547D00D9305F /* Onboarding.swift in Sources */,
 				65296D7E281645E300D9305F /* Persistence.swift in Sources */,
