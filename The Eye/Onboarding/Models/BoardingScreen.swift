@@ -19,5 +19,5 @@ struct BoardingScreen: Identifiable {
 var boardingScreen: [BoardingScreen] = [
     BoardingScreen(image: "Onboarding1", title: "Easy Controll with \nThe Eye", description: "Help controll and manage your finances safely and quickly"),
     BoardingScreen(image: "Onboarding2", title: "Easy Manage with \nThe Eye", description: "Help controll and manage your finances safely and quickly"),
-    BoardingScreen(image: "Onboarding2", title: "Safe with \nThe Eye", description: "Help controll and manage your finances safely and quickly")
+    BoardingScreen(image: "Onboarding3", title: "Safety Finances with \nThe Eye", description: "Help controll and manage your finances safely and quickly")
 ]
