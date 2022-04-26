@@ -54,7 +54,7 @@ struct Onboarding: View {
             RoundedRectangle(cornerRadius:  50)
                 .fill(.white)
             // size as image size
-                .frame(width: getScreenBounds().width - 100, height: getScreenBounds().width - 150)
+                .frame(width: getScreenBounds().width - 100, height: getScreenBounds().width - 120)
                 .scaleEffect(2)
                 //.rotationEffect(.init(degrees: -270))
                 .rotationEffect(.init(degrees: getRotation()))
@@ -69,6 +69,7 @@ struct Onboarding: View {
         .ignoresSafeArea(.container, edges: .all)
         .overlay(
             HStack{
+                Spacer(minLength: 28)
                 HStack {
                     ForEach(boardingScreen.indices, id: \.self){index in
                         Circle()

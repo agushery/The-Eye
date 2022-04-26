@@ -11,7 +11,6 @@ struct OffsetPageTabView<Content: View> : UIViewRepresentable {
     
     var content: Content
     @Binding var offset: CGFloat
-    //@Binding var title: String
     
     func makeCoordinator() -> Coordinator {
         return OffsetPageTabView.Coordinator(parent: self)

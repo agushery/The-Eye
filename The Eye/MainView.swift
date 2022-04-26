@@ -11,15 +11,20 @@ import SwiftUI
 struct MainView: View {
     var body: some View {
         TabView {
-            HomeView()
+            StatusView()
                 .tabItem{
                     Image(systemName: "menucard")
-                    Text("Chart")
+                    Text("Status")
                 }
             ContentView()
                 .tabItem{
-                    Image(systemName: "chart.xyaxis.line")
-                    Text("Chart")
+                    Image(systemName: "list.triangle")
+                    Text("Transaction")
+                }
+            ProfileView(name: "", phoneNumber: "")
+                .tabItem{
+                    Image(systemName: "person")
+                    Text("Profile")
                 }
         }
     }
