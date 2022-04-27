@@ -16,12 +16,17 @@ struct MainView: View {
                     Image(systemName: "menucard")
                     Text("Status")
                 }
+            TransactionView()
+                .tabItem{
+                    Image(systemName: "list.triangle")
+                    Text("Transaction")
+                }
             ContentView()
                 .tabItem{
                     Image(systemName: "list.triangle")
                     Text("Transaction")
                 }
-            ProfileView(name: "", phoneNumber: "")
+            ProfileView(firstName: "", lastName: "", gender: "", income: "", email: "")
                 .tabItem{
                     Image(systemName: "person")
                     Text("Profile")
