@@ -12,8 +12,21 @@ struct StatusView: View {
     var body: some View {
         NavigationView {
             VStack{
-                Text("Hello, Home!")
-            }.fullScreenCover(isPresented: $didOnboarding, content: {
+                HStack{
+                    Spacer()
+                    Button{
+                        print("Pindah")
+                    } label: {
+                        Image(systemName: "person.circle")
+                            .resizable()
+                            .frame(width: 40, height: 40)
+                            .foregroundColor(.black)
+                            .padding(.trailing,25)
+                    }
+                }
+                Spacer()
+            } // Vstak 1
+            .fullScreenCover(isPresented: $didOnboarding, content: {
                 Onboarding(didOnboarding: $didOnboarding)
             })
             .navigationTitle("Status")

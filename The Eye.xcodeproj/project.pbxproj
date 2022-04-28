@@ -8,10 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		65296D75281645E100D9305F /* The_EyeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65296D74281645E100D9305F /* The_EyeApp.swift */; };
-		65296D77281645E100D9305F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65296D76281645E100D9305F /* ContentView.swift */; };
 		65296D79281645E300D9305F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65296D78281645E300D9305F /* Assets.xcassets */; };
 		65296D7C281645E300D9305F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65296D7B281645E300D9305F /* Preview Assets.xcassets */; };
-		65296D7E281645E300D9305F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65296D7D281645E300D9305F /* Persistence.swift */; };
 		65296D81281645E300D9305F /* The_Eye.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 65296D7F281645E300D9305F /* The_Eye.xcdatamodeld */; };
 		65296D882816460800D9305F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65296D872816460800D9305F /* MainView.swift */; };
 		65296D9F2816547D00D9305F /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65296D9E2816547D00D9305F /* Onboarding.swift */; };
@@ -20,15 +18,14 @@
 		65296DA82816B01200D9305F /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65296DA72816B01200D9305F /* StatusView.swift */; };
 		65B6FA092816FFB200F619F0 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B6FA082816FFB200F619F0 /* ProfileView.swift */; };
 		65B6FA0D281856A500F619F0 /* TransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B6FA0C281856A500F619F0 /* TransactionView.swift */; };
+		65B6FA0F281A394900F619F0 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B6FA0E281A394900F619F0 /* Persistence.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		65296D71281645E100D9305F /* The Eye.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Eye.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		65296D74281645E100D9305F /* The_EyeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = The_EyeApp.swift; sourceTree = "<group>"; };
-		65296D76281645E100D9305F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		65296D78281645E300D9305F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		65296D7B281645E300D9305F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		65296D7D281645E300D9305F /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		65296D80281645E300D9305F /* The_Eye.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = The_Eye.xcdatamodel; sourceTree = "<group>"; };
 		65296D872816460800D9305F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		65296D9E2816547D00D9305F /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
@@ -37,6 +34,7 @@
 		65296DA72816B01200D9305F /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
 		65B6FA082816FFB200F619F0 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		65B6FA0C281856A500F619F0 /* TransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionView.swift; sourceTree = "<group>"; };
+		65B6FA0E281A394900F619F0 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,7 +69,6 @@
 			children = (
 				65B6FA0A281792F200F619F0 /* Transaction */,
 				65B6FA072816FFA200F619F0 /* Profile */,
-				65296D9A28164E5900D9305F /* ContentView */,
 				65296DA62816AFF600D9305F /* Status */,
 				65296D9B28164E7400D9305F /* Onboarding */,
 				65296D74281645E100D9305F /* The_EyeApp.swift */,
@@ -79,6 +76,7 @@
 				65296D78281645E300D9305F /* Assets.xcassets */,
 				65296D7F281645E300D9305F /* The_Eye.xcdatamodeld */,
 				65296D7A281645E300D9305F /* Preview Content */,
+				65B6FA0E281A394900F619F0 /* Persistence.swift */,
 			);
 			path = "The Eye";
 			sourceTree = "<group>";
@@ -89,15 +87,6 @@
 				65296D7B281645E300D9305F /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		65296D9A28164E5900D9305F /* ContentView */ = {
-			isa = PBXGroup;
-			children = (
-				65296D76281645E100D9305F /* ContentView.swift */,
-				65296D7D281645E300D9305F /* Persistence.swift */,
-			);
-			path = ContentView;
 			sourceTree = "<group>";
 		};
 		65296D9B28164E7400D9305F /* Onboarding */ = {
@@ -224,9 +213,8 @@
 				65296DA32816581D00D9305F /* OffsetPageTabView.swift in Sources */,
 				65B6FA092816FFB200F619F0 /* ProfileView.swift in Sources */,
 				65296D9F2816547D00D9305F /* Onboarding.swift in Sources */,
-				65296D7E281645E300D9305F /* Persistence.swift in Sources */,
 				65B6FA0D281856A500F619F0 /* TransactionView.swift in Sources */,
-				65296D77281645E100D9305F /* ContentView.swift in Sources */,
+				65B6FA0F281A394900F619F0 /* Persistence.swift in Sources */,
 				65296D75281645E100D9305F /* The_EyeApp.swift in Sources */,
 				65296D882816460800D9305F /* MainView.swift in Sources */,
 				65296DA1281654B300D9305F /* BoardingScreen.swift in Sources */,

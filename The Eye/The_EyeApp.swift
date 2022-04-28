@@ -9,11 +9,14 @@ import SwiftUI
 
 @main
 struct The_EyeApp: App {
-    let persistenceController = PersistenceController.shared
+    
+    let persistenceContainer = PersistenceController.shared
+    
+    
     var body: some Scene {
         WindowGroup {
             MainView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environment(\.managedObjectContext, persistenceContainer.container.viewContext)
         }
     }
 }

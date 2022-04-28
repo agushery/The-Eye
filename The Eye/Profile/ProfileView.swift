@@ -7,88 +7,140 @@
 
 import SwiftUI
 
+
 struct ProfileView: View {
-    @Environment(\.managedObjectContext) var mov
+    
+    
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(sortDescriptors: []) var profiles: FetchedResults<Profile>
+    
     @State var firstName: String = ""
-    @State var lastName: String
-    @State var gender: String
+    @State var lastName: String = ""
     @State var income: String
-    @State var email: String
+    @State var didEdit: Bool = true
+    @State var editButton: String = "Edit"
     
-    let genders = ["Male", "Female"]
-    
+    @State var test: [Profile] = []
     
     var body: some View {
         NavigationView {
-            Form {
-                Image("Profile")
-                    .resizable()
-                    .clipped()
-                    .frame(width: 100, height: 100, alignment: .center)
-                    .clipShape(Circle())
-                    .overlay(Circle().stroke(Color.blue, lineWidth: 2.0))
-                Section(header: Text("Name")) {
-                    HStack {
-                        NavigationLink {
-                            Form {
-                                VStack{
+            VStack{
+                Form {
+                    Section{
+                        HStack{
+                            Spacer()
+                            Image("Profile")
+                                .resizable()
+                                .clipped()
+                                .frame(width: 150, height: 150, alignment: .center)
+                                .clipShape(Circle())
+                                .shadow(radius: 5)
+                                .overlay(Circle().stroke(Color.clear, lineWidth: 2.0))
+                                .padding(.top,50)
+                            Spacer()
+                        }
+                    }.listRowBackground(Color.clear)
+                    Section(header: Text("Name")) {
+                        HStack {
+                            NavigationLink {
+                                Form {
                                     HStack {
                                         Text("First Name ")
                                         TextField("Enter First Name", text: $firstName)
+                                            .disabled(didEdit)
                                             .padding(.leading,50)
                                     }
                                     HStack {
                                         Text("Last Name ")
                                         TextField("Enter Last Name", text: $lastName)
+                                            .disabled(didEdit)
                                             .padding(.leading,50)
                                     }
+                                }// form
+                                .toolbar {
+                                    ToolbarItem(placement: .navigationBarTrailing) {
+                                        Button{
+                                            didEdit.toggle()
+                                            if didEdit{
+                                                self.editButton = "Edit"
+                                            } else {
+                                                self.editButton = "Done"
+                                                let newProfile = Profile(context: moc)
+                                                newProfile.firstname = firstName
+                                                newProfile.lastname = lastName
+                                                do {
+                                                    try self.moc.save()
+                                                } catch {
+                                                    print("whoops \(error.localizedDescription)")
+                                                }
+
+                                            }
+                                            print(didEdit)
+                                        } label: {
+                                            Text(editButton)
+                                        }//button name
+                                    }
                                 }
+                            }label: {
+                                Text(firstName + lastName)
                             }
-                            .toolbar {
-                                ToolbarItem(placement: .navigationBarTrailing) {
-                                    EditButton()
+                        }
+                    } // section name
+//                    Section{
+//                        test.income.map(Text.init)
+//                            .font(.title)
+//                    }
+                    Section(header: Text("Income")){
+                        HStack {
+                            NavigationLink {
+                                Form {
+                                    HStack {
+                                        Text("Income ")
+                                        TextField("Enter Your Income", text: $income)
+                                            .disabled(didEdit)
+                                            .padding(.leading,50)
+                                    }
+                                } // form Income
+                                .toolbar {
+                                    ToolbarItem(placement: .navigationBarTrailing) {
+                                        Button{
+                                            didEdit.toggle()
+                                            if didEdit{
+                                                self.editButton = "Edit"
+                                            } else {
+                                                print(test)
+                                                self.editButton = "Done"
+                                                let newProfile = Profile(context: moc)
+                                                newProfile.income = income
+                                                do {
+                                                    try self.moc.save()
+                                                } catch {
+                                                    print("whoops \(error.localizedDescription)")
+                                                }
+                                            }
+                                            print(didEdit)
+                                        } label: {
+                                            Text(editButton)
+                                        }//button income
+                                    }
                                 }
+                            }label: {
+                                Text("Rp. " + income)
                             }
-                        }label: {
-                            Text(firstName + lastName)
                         }
                     }
+                    // section income
                 }
-                Section(header: Text("Addtitional")){
-                    HStack {
-                        Text("Date of Birth")
-                        TextField("Cek Date Picker", text: $lastName)
-                    }
-                    HStack {
-                        Picker("Gender", selection: $gender){
-                            ForEach(genders, id: \.self){
-                                Text($0)
-                            }
-                        }
-                    }
-                }
-                Section(header: Text("Contactable At")) {
-                    HStack {
-                        Text("Email")
-                        TextField("Enter Email", text: $email)
-                            .padding(.leading, 166)
-                    }
-                    HStack {
-                        Text("Income")
-                        TextField("Enter Income", text: $income)
-                            .padding(.leading, 150)
-                    }
-                }
-                
+                //form
+                .navigationBarTitle(Text("Profile"))
             }
-            .navigationBarTitle(Text("Profile"))
         }
-    }
-}
+    } // var body
+} // struck
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView(firstName: "", lastName: "", gender: "", income: "", email: "")
+        ProfileView(firstName: "", lastName: "", income: "")
             .previewInterfaceOrientation(.portrait)
     }
 }
