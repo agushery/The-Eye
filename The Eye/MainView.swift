@@ -21,11 +21,6 @@ struct MainView: View {
                     Image(systemName: "list.triangle")
                     Text("Transaction")
                 }
-            ProfileView(firstName: "", lastName: "",  income: "")
-                .tabItem{
-                    Image(systemName: "person")
-                    Text("Profile")
-                }
-        }.background(.white)
+        }
     }
 }

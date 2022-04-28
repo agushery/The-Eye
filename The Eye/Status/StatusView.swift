@@ -13,26 +13,28 @@ struct StatusView: View {
         NavigationView {
             VStack{
                 HStack{
+                    Text("Welcome Agus")
+                        .fontWeight(.bold)
+                        .kerning(1.2)
+                        .padding()
                     Spacer()
-                    Button{
-                        print("Pindah")
-                    } label: {
+                    NavigationLink(destination: ProfileView(income: "")){
                         Image(systemName: "person.circle")
                             .resizable()
                             .frame(width: 40, height: 40)
-                            .foregroundColor(.black)
+                            .foregroundColor(.white)
                             .padding(.trailing,25)
-                    }
-                }
+                    } //navlink
+                } // hastack
                 Spacer()
             } // Vstak 1
             .fullScreenCover(isPresented: $didOnboarding, content: {
                 Onboarding(didOnboarding: $didOnboarding)
             })
             .navigationTitle("Status")
-        }
-    }
-}
+        } // navView
+    } // var body
+} // struct
 
 struct StatusView_Previews: PreviewProvider {
     static var previews: some View {

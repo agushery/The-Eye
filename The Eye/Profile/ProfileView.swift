@@ -23,7 +23,6 @@ struct ProfileView: View {
     @State var test: [Profile] = []
     
     var body: some View {
-        NavigationView {
             VStack{
                 Form {
                     Section{
@@ -42,6 +41,7 @@ struct ProfileView: View {
                     }.listRowBackground(Color.clear)
                     Section(header: Text("Name")) {
                         HStack {
+                            Text("Agus Hery")
                             NavigationLink {
                                 Form {
                                     HStack {
@@ -133,7 +133,7 @@ struct ProfileView: View {
                 }
                 //form
                 .navigationBarTitle(Text("Profile"))
-            }
+                .navigationBarTitleDisplayMode(.inline)
         }
     } // var body
 } // struck
