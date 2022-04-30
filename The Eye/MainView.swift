@@ -13,7 +13,7 @@ struct MainView: View {
         TabView {
             StatusView()
                 .tabItem{
-                    Image(systemName: "menucard")
+                    Image(systemName: "chart.pie.fill")
                     Text("Status")
                 }
             TransactionView()

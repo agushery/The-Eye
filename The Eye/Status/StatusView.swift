@@ -14,7 +14,7 @@ struct StatusView: View {
             VStack{
                 HStack{
                     Text("Welcome Agus")
-                        .fontWeight(.bold)
+                        .font(.largeTitle.bold())
                         .kerning(1.2)
                         .padding()
                     Spacer()
@@ -22,7 +22,7 @@ struct StatusView: View {
                         Image(systemName: "person.circle")
                             .resizable()
                             .frame(width: 40, height: 40)
-                            .foregroundColor(.white)
+                            .foregroundColor(Color("Theme"))
                             .padding(.trailing,25)
                     } //navlink
                 } // hastack
@@ -32,6 +32,7 @@ struct StatusView: View {
                 Onboarding(didOnboarding: $didOnboarding)
             })
             .navigationTitle("Status")
+            .navigationBarHidden(true)
         } // navView
     } // var body
 } // struct
