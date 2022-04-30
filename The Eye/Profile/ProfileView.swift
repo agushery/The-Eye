@@ -12,7 +12,7 @@ struct ProfileView: View {
     
     
     @Environment(\.managedObjectContext) var moc
-    //@FetchRequest(sortDescriptors: []) var profiles: FetchedResults<Profile>
+    @FetchRequest(sortDescriptors: []) var profiles: FetchedResults<Profile>
     
     @State var firstName: String = ""
     @State var lastName: String = ""
@@ -20,7 +20,6 @@ struct ProfileView: View {
     @State var didEdit: Bool = true
     @State var editButton: String = "Edit"
     
-    //@State var test: [Profile] = []
     
     var body: some View {
             VStack{
@@ -41,7 +40,13 @@ struct ProfileView: View {
                     }.listRowBackground(Color.clear)
                     Section(header: Text("Name")) {
                         HStack {
-                            Text("Agus Hery")
+                            List{
+                                ForEach(profiles){ trans in
+                                    VStack{
+                                        Text(trans.firstname ?? "Empty")
+                                    }
+                                }
+                            }
                             NavigationLink {
                                 Form {
                                     HStack {
@@ -65,14 +70,14 @@ struct ProfileView: View {
                                                 self.editButton = "Edit"
                                             } else {
                                                 self.editButton = "Done"
-//                                                let newProfile = Profile(context: moc)
-//                                                newProfile.firstname = firstName
-//                                                newProfile.lastname = lastName
-//                                                do {
-//                                                    try self.moc.save()
-//                                                } catch {
-//                                                    print("whoops \(error.localizedDescription)")
-//                                                }
+                                                let newProfile = Profile(context: moc)
+                                                newProfile.firstname = firstName
+                                                newProfile.lastname = lastName
+                                                do {
+                                                    try self.moc.save()
+                                                } catch {
+                                                    print("whoops \(error.localizedDescription)")
+                                                }
 
                                             }
                                             print(didEdit)
@@ -110,13 +115,13 @@ struct ProfileView: View {
                                             } else {
                                                 print("ubah")
                                                 self.editButton = "Done"
-//                                                let newProfile = Profile(context: moc)
-//                                                newProfile.income = income
-//                                                do {
-//                                                    try self.moc.save()
-//                                                } catch {
-//                                                    print("whoops \(error.localizedDescription)")
-//                                                }
+                                                let newProfile = Profile(context: moc)
+                                                newProfile.income = income
+                                                do {
+                                                    try self.moc.save()
+                                                } catch {
+                                                    print("whoops \(error.localizedDescription)")
+                                                }
                                             }
                                             print(didEdit)
                                         } label: {

@@ -33,7 +33,15 @@ struct TransactionView: View {
                             .padding()
                     })
                 } // hastack
-                Text("Hasil : \(transactions.count)")
+                List{
+                    ForEach(transactions){ trans in
+                        VStack{
+                            Text(trans.title ?? "Empty")
+                            Text(trans.type ?? "Empty")
+                            Text(String(trans.amount))
+                        }
+                    }
+                }
                 .sheet(isPresented: $isAddTransaction) {
                     AddTransactionView(title: "", amount: 0, type: "")
                 }
