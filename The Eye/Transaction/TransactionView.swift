@@ -7,6 +7,11 @@
 
 import SwiftUI
 struct TransactionView: View {
+    
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(sortDescriptors: []) var transactions: FetchedResults<Tb_Transaction>
+
+    
     @State var isAddTransaction: Bool = false
     var body: some View {
         NavigationView{
@@ -28,8 +33,9 @@ struct TransactionView: View {
                             .padding()
                     })
                 } // hastack
+                Text("Hasil : \(transactions.count)")
                 .sheet(isPresented: $isAddTransaction) {
-                    AddTransactionView(coba: "")
+                    AddTransactionView(title: "", amount: 0, type: "")
                 }
                 Spacer()
             } // Vstak 1

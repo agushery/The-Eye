@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21E258" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Profile" representedClassName="Profile" syncable="YES" codeGenerationType="class">
+    <entity name="Profile" representedClassName="Profile" syncable="YES">
         <attribute name="firstname" optional="YES" attributeType="String"/>
         <attribute name="income" optional="YES" attributeType="String"/>
         <attribute name="lastname" optional="YES" attributeType="String"/>
     </entity>
-    <entity name="Transaction" representedClassName="Transaction" syncable="YES" codeGenerationType="class">
+    <entity name="Tb_Transaction" representedClassName="Tb_Transaction" syncable="YES">
         <attribute name="amount" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="type" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="Profile" positionX="-54" positionY="9" width="128" height="88"/>
-        <element name="Transaction" positionX="0" positionY="90" width="128" height="89"/>
+        <element name="Profile" positionX="-54" positionY="9" width="128" height="74"/>
+        <element name="Tb_Transaction" positionX="-54" positionY="36" width="128" height="89"/>
     </elements>
 </model>

@@ -12,7 +12,7 @@ struct ProfileView: View {
     
     
     @Environment(\.managedObjectContext) var moc
-    @FetchRequest(sortDescriptors: []) var profiles: FetchedResults<Profile>
+    //@FetchRequest(sortDescriptors: []) var profiles: FetchedResults<Profile>
     
     @State var firstName: String = ""
     @State var lastName: String = ""
@@ -20,7 +20,7 @@ struct ProfileView: View {
     @State var didEdit: Bool = true
     @State var editButton: String = "Edit"
     
-    @State var test: [Profile] = []
+    //@State var test: [Profile] = []
     
     var body: some View {
             VStack{
@@ -65,14 +65,14 @@ struct ProfileView: View {
                                                 self.editButton = "Edit"
                                             } else {
                                                 self.editButton = "Done"
-                                                let newProfile = Profile(context: moc)
-                                                newProfile.firstname = firstName
-                                                newProfile.lastname = lastName
-                                                do {
-                                                    try self.moc.save()
-                                                } catch {
-                                                    print("whoops \(error.localizedDescription)")
-                                                }
+//                                                let newProfile = Profile(context: moc)
+//                                                newProfile.firstname = firstName
+//                                                newProfile.lastname = lastName
+//                                                do {
+//                                                    try self.moc.save()
+//                                                } catch {
+//                                                    print("whoops \(error.localizedDescription)")
+//                                                }
 
                                             }
                                             print(didEdit)
@@ -108,15 +108,15 @@ struct ProfileView: View {
                                             if didEdit{
                                                 self.editButton = "Edit"
                                             } else {
-                                                print(test)
+                                                print("ubah")
                                                 self.editButton = "Done"
-                                                let newProfile = Profile(context: moc)
-                                                newProfile.income = income
-                                                do {
-                                                    try self.moc.save()
-                                                } catch {
-                                                    print("whoops \(error.localizedDescription)")
-                                                }
+//                                                let newProfile = Profile(context: moc)
+//                                                newProfile.income = income
+//                                                do {
+//                                                    try self.moc.save()
+//                                                } catch {
+//                                                    print("whoops \(error.localizedDescription)")
+//                                                }
                                             }
                                             print(didEdit)
                                         } label: {
