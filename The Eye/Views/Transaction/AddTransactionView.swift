@@ -10,19 +10,22 @@ import SwiftUI
 struct AddTransactionView: View {
     
     @Environment(\.managedObjectContext) var moc
+    @Environment(\.presentationMode) var dismiss
     
     @State var title: String
     @State var amount: Int32
     @State var type: String
     @State var selectedDate: Date
     
-    let types = ["Shopping", "Transport", "Food", "Cosmetic", "E-Voucher", "Others"]
+    
+    let types = ["Shopping", "Transport", "Food", "Health", "Others"]
     
     var body: some View {
         NavigationView{
             Form{
                 Section(header: Text("Title")){
                     TextField("Insert Title Purchase", text: $title)
+                        .disableAutocorrection(true)
                 }
                 Section(header: Text("Type")){
                     Picker("Type of transaction",selection: $type){
@@ -34,8 +37,9 @@ struct AddTransactionView: View {
                 }
                 Section(header: Text("Amount")){
                     HStack{
-                        Text("Rp.  ")
+                        Text("Rp. ")
                         TextField("Insert Amount Purchase", value: $amount, format: .number)
+                            .disableAutocorrection(true)
                     }
                 }
                 Section(header: Text("Date")){
@@ -58,6 +62,7 @@ struct AddTransactionView: View {
                     } catch {
                         print("whoops \(error.localizedDescription)")
                     }
+                    self.dismiss.wrappedValue.dismiss()
                 }, label: {
                     Text("Save")
                 })
