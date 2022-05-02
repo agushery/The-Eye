@@ -14,6 +14,7 @@ struct AddTransactionView: View {
     @State var title: String
     @State var amount: Int32
     @State var type: String
+    @State var selectedDate: Date
     
     let types = ["Shopping", "Transport", "Food", "Cosmetic", "E-Voucher", "Others"]
     
@@ -37,12 +38,21 @@ struct AddTransactionView: View {
                         TextField("Insert Amount Purchase", value: $amount, format: .number)
                     }
                 }
+                Section(header: Text("Date")){
+                    HStack{
+                        Text("Date of transaction")
+                        DatePicker("", selection: $selectedDate, displayedComponents: .date)
+                    }
+                    
+                }
                 
                 Button(action: {
                     let newTransaction = Tb_Transaction(context: moc)
+                    newTransaction.id = UUID()
                     newTransaction.title = title
                     newTransaction.type = type
                     newTransaction.amount = Int32(amount)
+                    newTransaction.date = selectedDate
                     do {
                         try self.moc.save()
                     } catch {
@@ -60,6 +70,6 @@ struct AddTransactionView: View {
 
 struct AddTransactionView_Previews: PreviewProvider {
     static var previews: some View {
-        AddTransactionView(title: "", amount: 0, type: "")
+        AddTransactionView(title: "", amount: 0, type: "", selectedDate: Date())
     }
 }

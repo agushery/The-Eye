@@ -20,10 +20,10 @@
 		65B6FA0D281856A500F619F0 /* TransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B6FA0C281856A500F619F0 /* TransactionView.swift */; };
 		65B6FA0F281A394900F619F0 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B6FA0E281A394900F619F0 /* Persistence.swift */; };
 		65B6FA38281D62E200F619F0 /* AddTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B6FA37281D62E200F619F0 /* AddTransactionView.swift */; };
-		65B6FA48281D9F5800F619F0 /* Profile+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B6FA44281D9F5800F619F0 /* Profile+CoreDataClass.swift */; };
-		65B6FA49281D9F5800F619F0 /* Profile+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B6FA45281D9F5800F619F0 /* Profile+CoreDataProperties.swift */; };
-		65B6FA4A281D9F5800F619F0 /* Tb_Transaction+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B6FA46281D9F5800F619F0 /* Tb_Transaction+CoreDataClass.swift */; };
-		65B6FA4B281D9F5800F619F0 /* Tb_Transaction+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B6FA47281D9F5800F619F0 /* Tb_Transaction+CoreDataProperties.swift */; };
+		65C73D54281F895600AD9EEF /* Profile+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C73D50281F895600AD9EEF /* Profile+CoreDataClass.swift */; };
+		65C73D55281F895600AD9EEF /* Profile+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C73D51281F895600AD9EEF /* Profile+CoreDataProperties.swift */; };
+		65C73D56281F895600AD9EEF /* Tb_Transaction+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C73D52281F895600AD9EEF /* Tb_Transaction+CoreDataClass.swift */; };
+		65C73D57281F895600AD9EEF /* Tb_Transaction+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C73D53281F895600AD9EEF /* Tb_Transaction+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,10 +41,10 @@
 		65B6FA0C281856A500F619F0 /* TransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionView.swift; sourceTree = "<group>"; };
 		65B6FA0E281A394900F619F0 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		65B6FA37281D62E200F619F0 /* AddTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionView.swift; sourceTree = "<group>"; };
-		65B6FA44281D9F5800F619F0 /* Profile+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Profile+CoreDataClass.swift"; sourceTree = "<group>"; };
-		65B6FA45281D9F5800F619F0 /* Profile+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Profile+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		65B6FA46281D9F5800F619F0 /* Tb_Transaction+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tb_Transaction+CoreDataClass.swift"; sourceTree = "<group>"; };
-		65B6FA47281D9F5800F619F0 /* Tb_Transaction+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tb_Transaction+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		65C73D50281F895600AD9EEF /* Profile+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Profile+CoreDataClass.swift"; sourceTree = "<group>"; };
+		65C73D51281F895600AD9EEF /* Profile+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Profile+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		65C73D52281F895600AD9EEF /* Tb_Transaction+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tb_Transaction+CoreDataClass.swift"; sourceTree = "<group>"; };
+		65C73D53281F895600AD9EEF /* Tb_Transaction+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tb_Transaction+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,10 +61,6 @@
 		65296D68281645E100D9305F = {
 			isa = PBXGroup;
 			children = (
-				65B6FA44281D9F5800F619F0 /* Profile+CoreDataClass.swift */,
-				65B6FA45281D9F5800F619F0 /* Profile+CoreDataProperties.swift */,
-				65B6FA46281D9F5800F619F0 /* Tb_Transaction+CoreDataClass.swift */,
-				65B6FA47281D9F5800F619F0 /* Tb_Transaction+CoreDataProperties.swift */,
 				65296D73281645E100D9305F /* The Eye */,
 				65296D72281645E100D9305F /* Products */,
 			);
@@ -81,16 +77,14 @@
 		65296D73281645E100D9305F /* The Eye */ = {
 			isa = PBXGroup;
 			children = (
-				65B6FA0A281792F200F619F0 /* Transaction */,
-				65B6FA072816FFA200F619F0 /* Profile */,
-				65296DA62816AFF600D9305F /* Status */,
-				65296D9B28164E7400D9305F /* Onboarding */,
+				65B6FA50281E2C8200F619F0 /* Views */,
+				65B6FA4C281E2BCF00F619F0 /* CoreData */,
+				65B6FA4D281E2BE800F619F0 /* Models */,
 				65296D74281645E100D9305F /* The_EyeApp.swift */,
 				65296D872816460800D9305F /* MainView.swift */,
 				65296D78281645E300D9305F /* Assets.xcassets */,
 				65296D7F281645E300D9305F /* The_Eye.xcdatamodeld */,
 				65296D7A281645E300D9305F /* Preview Content */,
-				65B6FA0E281A394900F619F0 /* Persistence.swift */,
 			);
 			path = "The Eye";
 			sourceTree = "<group>";
@@ -152,6 +146,36 @@
 				65B6FA37281D62E200F619F0 /* AddTransactionView.swift */,
 			);
 			path = Transaction;
+			sourceTree = "<group>";
+		};
+		65B6FA4C281E2BCF00F619F0 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				65C73D50281F895600AD9EEF /* Profile+CoreDataClass.swift */,
+				65C73D51281F895600AD9EEF /* Profile+CoreDataProperties.swift */,
+				65C73D52281F895600AD9EEF /* Tb_Transaction+CoreDataClass.swift */,
+				65C73D53281F895600AD9EEF /* Tb_Transaction+CoreDataProperties.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		65B6FA4D281E2BE800F619F0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				65B6FA0E281A394900F619F0 /* Persistence.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		65B6FA50281E2C8200F619F0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				65B6FA072816FFA200F619F0 /* Profile */,
+				65296DA62816AFF600D9305F /* Status */,
+				65296D9B28164E7400D9305F /* Onboarding */,
+				65B6FA0A281792F200F619F0 /* Transaction */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -225,19 +249,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				65296DA82816B01200D9305F /* StatusView.swift in Sources */,
+				65C73D54281F895600AD9EEF /* Profile+CoreDataClass.swift in Sources */,
 				65B6FA38281D62E200F619F0 /* AddTransactionView.swift in Sources */,
 				65296DA32816581D00D9305F /* OffsetPageTabView.swift in Sources */,
 				65B6FA092816FFB200F619F0 /* ProfileView.swift in Sources */,
+				65C73D56281F895600AD9EEF /* Tb_Transaction+CoreDataClass.swift in Sources */,
 				65296D9F2816547D00D9305F /* Onboarding.swift in Sources */,
 				65B6FA0D281856A500F619F0 /* TransactionView.swift in Sources */,
+				65C73D57281F895600AD9EEF /* Tb_Transaction+CoreDataProperties.swift in Sources */,
 				65B6FA0F281A394900F619F0 /* Persistence.swift in Sources */,
-				65B6FA4B281D9F5800F619F0 /* Tb_Transaction+CoreDataProperties.swift in Sources */,
-				65B6FA48281D9F5800F619F0 /* Profile+CoreDataClass.swift in Sources */,
-				65B6FA4A281D9F5800F619F0 /* Tb_Transaction+CoreDataClass.swift in Sources */,
 				65296D75281645E100D9305F /* The_EyeApp.swift in Sources */,
-				65B6FA49281D9F5800F619F0 /* Profile+CoreDataProperties.swift in Sources */,
 				65296D882816460800D9305F /* MainView.swift in Sources */,
 				65296DA1281654B300D9305F /* BoardingScreen.swift in Sources */,
+				65C73D55281F895600AD9EEF /* Profile+CoreDataProperties.swift in Sources */,
 				65296D81281645E300D9305F /* The_Eye.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

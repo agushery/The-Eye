@@ -2,7 +2,7 @@
 //  Profile+CoreDataProperties.swift
 //  The Eye
 //
-//  Created by Agus Hery on 01/05/22.
+//  Created by Agus Hery on 02/05/22.
 //
 //
 

@@ -10,9 +10,9 @@ struct TransactionView: View {
     
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: []) var transactions: FetchedResults<Tb_Transaction>
-
     
     @State var isAddTransaction: Bool = false
+    
     var body: some View {
         NavigationView{
             VStack{
@@ -24,6 +24,7 @@ struct TransactionView: View {
                     Spacer()
                     
                     Button(action: {
+                        print(transactions)
                         isAddTransaction.toggle()
                     }, label: {
                         Image(systemName: "plus.circle")
@@ -35,17 +36,24 @@ struct TransactionView: View {
                 } // hastack
                 List{
                     ForEach(transactions){ trans in
-                        VStack{
-                            Text(trans.title ?? "Empty")
-                            Text(trans.type ?? "Empty")
-                            Text(String(trans.amount))
+                        let dates = trans.date
+                        HStack{
+                            Image(systemName: "globe")
+                                .padding()
+                            VStack{
+                                Text(trans.title ?? "Empty")
+                                Text(trans.type ?? "Empty")
+                                Text(dates?.toString(dateFormat: "dd-MM-yyyy" ) ?? "kosong")
+                            }
+                            VStack{
+                                Text("Rp. \(String(trans.amount))")
+                            }
                         }
                     }
                 }
                 .sheet(isPresented: $isAddTransaction) {
-                    AddTransactionView(title: "", amount: 0, type: "")
+                    AddTransactionView(title: "", amount: 0, type: "", selectedDate: Date())
                 }
-                Spacer()
             } // Vstak 1
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarHidden(true)
@@ -59,3 +67,13 @@ struct TransactionView_Previews: PreviewProvider {
     }
 }
 
+extension Date
+{
+    func toString( dateFormat format  : String ) -> String
+    {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        return dateFormatter.string(from: self)
+    }
+
+}
