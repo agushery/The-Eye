@@ -22,8 +22,10 @@
 		65B6FA38281D62E200F619F0 /* AddTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B6FA37281D62E200F619F0 /* AddTransactionView.swift */; };
 		65C73D54281F895600AD9EEF /* Profile+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C73D50281F895600AD9EEF /* Profile+CoreDataClass.swift */; };
 		65C73D55281F895600AD9EEF /* Profile+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C73D51281F895600AD9EEF /* Profile+CoreDataProperties.swift */; };
-		65C73D56281F895600AD9EEF /* Tb_Transaction+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C73D52281F895600AD9EEF /* Tb_Transaction+CoreDataClass.swift */; };
-		65C73D57281F895600AD9EEF /* Tb_Transaction+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C73D53281F895600AD9EEF /* Tb_Transaction+CoreDataProperties.swift */; };
+		65C73DBF282402B100AD9EEF /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 65C73DBE282402B100AD9EEF /* SwiftUICharts */; };
+		65C73DC12824128A00AD9EEF /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C73DC02824128A00AD9EEF /* DataModel.swift */; };
+		65C73DC42824144D00AD9EEF /* Tb_Transaction+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C73DC22824144D00AD9EEF /* Tb_Transaction+CoreDataClass.swift */; };
+		65C73DC52824144D00AD9EEF /* Tb_Transaction+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C73DC32824144D00AD9EEF /* Tb_Transaction+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,8 +45,9 @@
 		65B6FA37281D62E200F619F0 /* AddTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionView.swift; sourceTree = "<group>"; };
 		65C73D50281F895600AD9EEF /* Profile+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Profile+CoreDataClass.swift"; sourceTree = "<group>"; };
 		65C73D51281F895600AD9EEF /* Profile+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Profile+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		65C73D52281F895600AD9EEF /* Tb_Transaction+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tb_Transaction+CoreDataClass.swift"; sourceTree = "<group>"; };
-		65C73D53281F895600AD9EEF /* Tb_Transaction+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tb_Transaction+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		65C73DC02824128A00AD9EEF /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		65C73DC22824144D00AD9EEF /* Tb_Transaction+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tb_Transaction+CoreDataClass.swift"; sourceTree = "<group>"; };
+		65C73DC32824144D00AD9EEF /* Tb_Transaction+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tb_Transaction+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65C73DBF282402B100AD9EEF /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				65296DA72816B01200D9305F /* StatusView.swift */,
+				65C73DC02824128A00AD9EEF /* DataModel.swift */,
 			);
 			path = Status;
 			sourceTree = "<group>";
@@ -151,10 +156,10 @@
 		65B6FA4C281E2BCF00F619F0 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				65C73DC22824144D00AD9EEF /* Tb_Transaction+CoreDataClass.swift */,
+				65C73DC32824144D00AD9EEF /* Tb_Transaction+CoreDataProperties.swift */,
 				65C73D50281F895600AD9EEF /* Profile+CoreDataClass.swift */,
 				65C73D51281F895600AD9EEF /* Profile+CoreDataProperties.swift */,
-				65C73D52281F895600AD9EEF /* Tb_Transaction+CoreDataClass.swift */,
-				65C73D53281F895600AD9EEF /* Tb_Transaction+CoreDataProperties.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -194,6 +199,9 @@
 			dependencies = (
 			);
 			name = "The Eye";
+			packageProductDependencies = (
+				65C73DBE282402B100AD9EEF /* SwiftUICharts */,
+			);
 			productName = "The Eye";
 			productReference = 65296D71281645E100D9305F /* The Eye.app */;
 			productType = "com.apple.product-type.application";
@@ -222,6 +230,9 @@
 				Base,
 			);
 			mainGroup = 65296D68281645E100D9305F;
+			packageReferences = (
+				65C73DBD282402B100AD9EEF /* XCRemoteSwiftPackageReference "ChartView" */,
+			);
 			productRefGroup = 65296D72281645E100D9305F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -253,10 +264,11 @@
 				65B6FA38281D62E200F619F0 /* AddTransactionView.swift in Sources */,
 				65296DA32816581D00D9305F /* OffsetPageTabView.swift in Sources */,
 				65B6FA092816FFB200F619F0 /* ProfileView.swift in Sources */,
-				65C73D56281F895600AD9EEF /* Tb_Transaction+CoreDataClass.swift in Sources */,
+				65C73DC42824144D00AD9EEF /* Tb_Transaction+CoreDataClass.swift in Sources */,
+				65C73DC12824128A00AD9EEF /* DataModel.swift in Sources */,
 				65296D9F2816547D00D9305F /* Onboarding.swift in Sources */,
+				65C73DC52824144D00AD9EEF /* Tb_Transaction+CoreDataProperties.swift in Sources */,
 				65B6FA0D281856A500F619F0 /* TransactionView.swift in Sources */,
-				65C73D57281F895600AD9EEF /* Tb_Transaction+CoreDataProperties.swift in Sources */,
 				65B6FA0F281A394900F619F0 /* Persistence.swift in Sources */,
 				65296D75281645E100D9305F /* The_EyeApp.swift in Sources */,
 				65296D882816460800D9305F /* MainView.swift in Sources */,
@@ -463,6 +475,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		65C73DBD282402B100AD9EEF /* XCRemoteSwiftPackageReference "ChartView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppPear/ChartView";
+			requirement = {
+				kind = exactVersion;
+				version = "2.0.0-beta.2";
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		65C73DBE282402B100AD9EEF /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 65C73DBD282402B100AD9EEF /* XCRemoteSwiftPackageReference "ChartView" */;
+			productName = SwiftUICharts;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		65296D7F281645E300D9305F /* The_Eye.xcdatamodeld */ = {

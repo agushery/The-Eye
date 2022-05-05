@@ -13,7 +13,7 @@ struct TransactionView: View {
     
     @State var isAddTransaction: Bool = false
 
-    func idr(amount: Int32) -> String{
+    func idr(amount: Double) -> String{
         let formatter = NumberFormatter()
         formatter.locale = Locale(identifier: "id_ID")
         formatter.groupingSeparator = "."

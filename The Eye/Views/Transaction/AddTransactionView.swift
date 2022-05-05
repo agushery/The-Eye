@@ -13,7 +13,7 @@ struct AddTransactionView: View {
     @Environment(\.presentationMode) var dismiss
     
     @State var title: String
-    @State var amount: Int32
+    @State var amount: Double
     @State var type: String
     @State var selectedDate: Date
     
@@ -55,7 +55,7 @@ struct AddTransactionView: View {
                     newTransaction.id = UUID()
                     newTransaction.title = title
                     newTransaction.type = type
-                    newTransaction.amount = Int32(amount)
+                    newTransaction.amount = Double(amount)
                     newTransaction.date = selectedDate
                     do {
                         try self.moc.save()
