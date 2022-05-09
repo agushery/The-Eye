@@ -37,7 +37,7 @@ struct AddTransactionView: View {
                 }
                 Section(header: Text("Amount")){
                     HStack{
-                        Text("Rp. ")
+                        Text("$.")
                         TextField("Insert Amount Purchase", value: $amount, format: .number)
                             .disableAutocorrection(true)
                     }

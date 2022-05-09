@@ -9,11 +9,10 @@ import SwiftUI
 struct TransactionView: View {
     
     @Environment(\.managedObjectContext) var moc
-    @FetchRequest(sortDescriptors: []) var transactions: FetchedResults<Tb_Transaction>
-    
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)]) var transactions: FetchedResults<Tb_Transaction>
     @State var isAddTransaction: Bool = false
 
-    func idr(amount: Double) -> String{
+    func dollars(amount: Double) -> String{
         let formatter = NumberFormatter()
         formatter.locale = Locale(identifier: "id_ID")
         formatter.groupingSeparator = "."
@@ -25,6 +24,7 @@ struct TransactionView: View {
         return harga
     }
     
+    
     var body: some View {
         NavigationView{
             VStack{
@@ -34,7 +34,9 @@ struct TransactionView: View {
                         .kerning(1.2)
                         .padding()
                     Spacer()
-                    
+                    Button("CEK"){
+                        print(transactions.count)
+                    }
                     Button(action: {
                         print(transactions)
                         isAddTransaction.toggle()
@@ -53,7 +55,7 @@ struct TransactionView: View {
                             HStack{
                                 switch (trans.type!){
                                 case "Shopping":
-                                    Image(systemName: "chart")
+                                    Image(systemName: "cart")
                                         .padding()
                                         .foregroundColor(Color(#colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)))
                                 case "Transport":
@@ -80,7 +82,7 @@ struct TransactionView: View {
                                 .padding(.leading, 20)
                                 Spacer()
                                 VStack{
-                                    Text("Rp. \(idr(amount: trans.amount))")
+                                    Text("$. \(dollars(amount: trans.amount))")
                                 }
                             }
                         }
@@ -93,6 +95,7 @@ struct TransactionView: View {
             } // Vstak 1
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarHidden(true)
+
         } // navview
     } // var body
     private func deleteItems(offsets: IndexSet) {
