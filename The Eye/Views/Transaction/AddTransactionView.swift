@@ -72,9 +72,3 @@ struct AddTransactionView: View {
         }
     } // var body
 }
-
-struct AddTransactionView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddTransactionView(title: "", amount: 0, type: "", selectedDate: Date())
-    }
-}

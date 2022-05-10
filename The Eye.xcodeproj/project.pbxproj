@@ -16,12 +16,9 @@
 		65296DA1281654B300D9305F /* BoardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65296DA0281654B300D9305F /* BoardingScreen.swift */; };
 		65296DA32816581D00D9305F /* OffsetPageTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65296DA22816581D00D9305F /* OffsetPageTabView.swift */; };
 		65296DA82816B01200D9305F /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65296DA72816B01200D9305F /* StatusView.swift */; };
-		65B6FA092816FFB200F619F0 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B6FA082816FFB200F619F0 /* ProfileView.swift */; };
 		65B6FA0D281856A500F619F0 /* TransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B6FA0C281856A500F619F0 /* TransactionView.swift */; };
 		65B6FA0F281A394900F619F0 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B6FA0E281A394900F619F0 /* Persistence.swift */; };
 		65B6FA38281D62E200F619F0 /* AddTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B6FA37281D62E200F619F0 /* AddTransactionView.swift */; };
-		65C73D54281F895600AD9EEF /* Profile+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C73D50281F895600AD9EEF /* Profile+CoreDataClass.swift */; };
-		65C73D55281F895600AD9EEF /* Profile+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C73D51281F895600AD9EEF /* Profile+CoreDataProperties.swift */; };
 		65C73DC42824144D00AD9EEF /* Tb_Transaction+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C73DC22824144D00AD9EEF /* Tb_Transaction+CoreDataClass.swift */; };
 		65C73DC52824144D00AD9EEF /* Tb_Transaction+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C73DC32824144D00AD9EEF /* Tb_Transaction+CoreDataProperties.swift */; };
 		65C73DC82824CB6A00AD9EEF /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 65C73DC72824CB6A00AD9EEF /* SwiftUICharts */; };
@@ -38,12 +35,9 @@
 		65296DA0281654B300D9305F /* BoardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardingScreen.swift; sourceTree = "<group>"; };
 		65296DA22816581D00D9305F /* OffsetPageTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetPageTabView.swift; sourceTree = "<group>"; };
 		65296DA72816B01200D9305F /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
-		65B6FA082816FFB200F619F0 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		65B6FA0C281856A500F619F0 /* TransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionView.swift; sourceTree = "<group>"; };
 		65B6FA0E281A394900F619F0 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		65B6FA37281D62E200F619F0 /* AddTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionView.swift; sourceTree = "<group>"; };
-		65C73D50281F895600AD9EEF /* Profile+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Profile+CoreDataClass.swift"; sourceTree = "<group>"; };
-		65C73D51281F895600AD9EEF /* Profile+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Profile+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		65C73DC22824144D00AD9EEF /* Tb_Transaction+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tb_Transaction+CoreDataClass.swift"; sourceTree = "<group>"; };
 		65C73DC32824144D00AD9EEF /* Tb_Transaction+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tb_Transaction+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -133,14 +127,6 @@
 			path = Status;
 			sourceTree = "<group>";
 		};
-		65B6FA072816FFA200F619F0 /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-				65B6FA082816FFB200F619F0 /* ProfileView.swift */,
-			);
-			path = Profile;
-			sourceTree = "<group>";
-		};
 		65B6FA0A281792F200F619F0 /* Transaction */ = {
 			isa = PBXGroup;
 			children = (
@@ -155,8 +141,6 @@
 			children = (
 				65C73DC22824144D00AD9EEF /* Tb_Transaction+CoreDataClass.swift */,
 				65C73DC32824144D00AD9EEF /* Tb_Transaction+CoreDataProperties.swift */,
-				65C73D50281F895600AD9EEF /* Profile+CoreDataClass.swift */,
-				65C73D51281F895600AD9EEF /* Profile+CoreDataProperties.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -172,7 +156,6 @@
 		65B6FA50281E2C8200F619F0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				65B6FA072816FFA200F619F0 /* Profile */,
 				65296DA62816AFF600D9305F /* Status */,
 				65296D9B28164E7400D9305F /* Onboarding */,
 				65B6FA0A281792F200F619F0 /* Transaction */,
@@ -257,10 +240,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				65296DA82816B01200D9305F /* StatusView.swift in Sources */,
-				65C73D54281F895600AD9EEF /* Profile+CoreDataClass.swift in Sources */,
 				65B6FA38281D62E200F619F0 /* AddTransactionView.swift in Sources */,
 				65296DA32816581D00D9305F /* OffsetPageTabView.swift in Sources */,
-				65B6FA092816FFB200F619F0 /* ProfileView.swift in Sources */,
 				65C73DC42824144D00AD9EEF /* Tb_Transaction+CoreDataClass.swift in Sources */,
 				65296D9F2816547D00D9305F /* Onboarding.swift in Sources */,
 				65C73DC52824144D00AD9EEF /* Tb_Transaction+CoreDataProperties.swift in Sources */,
@@ -269,7 +250,6 @@
 				65296D75281645E100D9305F /* The_EyeApp.swift in Sources */,
 				65296D882816460800D9305F /* MainView.swift in Sources */,
 				65296DA1281654B300D9305F /* BoardingScreen.swift in Sources */,
-				65C73D55281F895600AD9EEF /* Profile+CoreDataProperties.swift in Sources */,
 				65296D81281645E300D9305F /* The_Eye.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

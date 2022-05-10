@@ -11,6 +11,8 @@ import SwiftUICharts
 struct StatusView: View {
     @State var didOnboarding: Bool = true
     @FetchRequest(sortDescriptors: [SortDescriptor(\.date)]) var transactions: FetchedResults<Tb_Transaction>
+    @State var selectedValue = 0
+    
     func getData()->[Double]{
         let data = transactions.map(){
             $0.amount
@@ -38,7 +40,7 @@ struct StatusView: View {
             return forecasting.suffix(7)
         }
         else{
-            return [7,6,5,4,3,2,1]
+            return [0,0,0,0,0,0,0]
         }
     }
     
@@ -47,46 +49,43 @@ struct StatusView: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .center){
-                HStack{
-                    Text("Welcome Agus")
-                        .font(.largeTitle.bold())
-                        .kerning(1.2)
-                        .padding()
-                    Spacer()
-                    NavigationLink(destination: ProfileView(income: "")){
-                        Image(systemName: "person.circle")
-                            .resizable()
-                            .frame(width: 40, height: 40)
-                            .foregroundColor(Color("Theme"))
-                            .padding(.trailing,25)
-                    } //navlink
-                } // hastack
-                
-
-                //
-                NavigationLink(destination: TransactionView()){
-                    VStack{
-                    Text("Simple Moving Average")
-                    LineView(data: Moving())
+                LineView(data: Moving())
                         .padding(.leading)
                         .padding(.trailing)
                         .padding(.bottom)
+                VStack{
+                    Picker(selection: $selectedValue, label: Text("someText")){
+                        Text("Your Data").tag(0)
+                        Text("Simple Moving Average").tag(1)
+                    }.pickerStyle(SegmentedPickerStyle())
+                    if (selectedValue == 0){
+                        SubviewA()
+                    }else if(selectedValue == 1){
+                        SubviewB()
+                    }else{
+                        EmptyView()
                     }
                 }
-                
-                HStack{
-                    Text("Simple Moving Average")
-                }
-                Spacer(minLength: 20)
+                Spacer(minLength: 100)
             } // Vstak 1
             .fullScreenCover(isPresented: $didOnboarding, content: {
                 Onboarding(didOnboarding: $didOnboarding)
             })
             .navigationTitle("Status")
-            .navigationBarHidden(true)
         } // navView
     } // var body
 } // struct
+struct SubviewA: View{
+    var body: some View{
+        Text("Subview A")
+    }
+}
+struct SubviewB: View{
+    var body: some View{
+        Text("Subview B")
+    }
+}
+
 
 struct StatusView_Previews: PreviewProvider {
     static var previews: some View {

@@ -9,7 +9,9 @@ import SwiftUI
 struct TransactionView: View {
     
     @Environment(\.managedObjectContext) var moc
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)]) var transactions: FetchedResults<Tb_Transaction>
+    @FetchRequest(sortDescriptors: [
+        NSSortDescriptor(keyPath: \Tb_Transaction.date, ascending: false)
+    ]) var transactions: FetchedResults<Tb_Transaction>
     @State var isAddTransaction: Bool = false
 
     func dollars(amount: Double) -> String{
@@ -28,30 +30,10 @@ struct TransactionView: View {
     var body: some View {
         NavigationView{
             VStack{
-                HStack{
-                    Text("Transaction")
-                        .font(.largeTitle.bold())
-                        .kerning(1.2)
-                        .padding()
-                    Spacer()
-                    Button("CEK"){
-                        print(transactions.count)
-                    }
-                    Button(action: {
-                        print(transactions)
-                        isAddTransaction.toggle()
-                    }, label: {
-                        Image(systemName: "plus.circle")
-                            .resizable()
-                            .frame(width: 30, height: 30)
-                            .foregroundColor(Color("Theme"))
-                            .padding()
-                    })
-                } // hastack
                 List{
                     ForEach(transactions){ trans in
                         let dates = trans.date
-                        NavigationLink(destination: AddTransactionView(title: trans.title!, amount: trans.amount, type: trans.type!, selectedDate: trans.date!)){
+//                        NavigationLink(destination: AddTransactionView(title: trans.title!, amount: trans.amount, type: trans.type!, selectedDate: trans.date!)){
                             HStack{
                                 switch (trans.type!){
                                 case "Shopping":
@@ -83,9 +65,10 @@ struct TransactionView: View {
                                 Spacer()
                                 VStack{
                                     Text("$. \(dollars(amount: trans.amount))")
+                                        .padding()
                                 }
                             }
-                        }
+//                        }
                     }
                     .onDelete(perform: deleteItems)
                 }
@@ -93,15 +76,33 @@ struct TransactionView: View {
                     AddTransactionView(title: "", amount: 0, type: "", selectedDate: Date())
                 }
             } // Vstak 1
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationBarHidden(true)
+            .navigationTitle("Transaction")
+            .toolbar{
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        isAddTransaction.toggle()
+                    }, label: {
+                        Image(systemName: "plus")
+                    })
+                }
+            }
 
         } // navview
     } // var body
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
             offsets.map { transactions[$0] }.forEach(moc.delete)
-            
+            do {
+                try moc.save()
+            } catch {
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+        }
+    }
+    private func editItems(offsets: IndexSet) {
+        withAnimation {
+            offsets.map { transactions[$0] }.forEach(moc.delete)
             do {
                 try moc.save()
             } catch {
