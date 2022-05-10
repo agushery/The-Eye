@@ -15,7 +15,7 @@
 		65296D9F2816547D00D9305F /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65296D9E2816547D00D9305F /* Onboarding.swift */; };
 		65296DA1281654B300D9305F /* BoardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65296DA0281654B300D9305F /* BoardingScreen.swift */; };
 		65296DA32816581D00D9305F /* OffsetPageTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65296DA22816581D00D9305F /* OffsetPageTabView.swift */; };
-		65296DA82816B01200D9305F /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65296DA72816B01200D9305F /* StatusView.swift */; };
+		65296DA82816B01200D9305F /* ForecastingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65296DA72816B01200D9305F /* ForecastingView.swift */; };
 		65B6FA0D281856A500F619F0 /* TransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B6FA0C281856A500F619F0 /* TransactionView.swift */; };
 		65B6FA0F281A394900F619F0 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B6FA0E281A394900F619F0 /* Persistence.swift */; };
 		65B6FA38281D62E200F619F0 /* AddTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B6FA37281D62E200F619F0 /* AddTransactionView.swift */; };
@@ -34,7 +34,7 @@
 		65296D9E2816547D00D9305F /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		65296DA0281654B300D9305F /* BoardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardingScreen.swift; sourceTree = "<group>"; };
 		65296DA22816581D00D9305F /* OffsetPageTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetPageTabView.swift; sourceTree = "<group>"; };
-		65296DA72816B01200D9305F /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
+		65296DA72816B01200D9305F /* ForecastingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastingView.swift; sourceTree = "<group>"; };
 		65B6FA0C281856A500F619F0 /* TransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionView.swift; sourceTree = "<group>"; };
 		65B6FA0E281A394900F619F0 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		65B6FA37281D62E200F619F0 /* AddTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionView.swift; sourceTree = "<group>"; };
@@ -122,7 +122,7 @@
 		65296DA62816AFF600D9305F /* Status */ = {
 			isa = PBXGroup;
 			children = (
-				65296DA72816B01200D9305F /* StatusView.swift */,
+				65296DA72816B01200D9305F /* ForecastingView.swift */,
 			);
 			path = Status;
 			sourceTree = "<group>";
@@ -239,7 +239,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65296DA82816B01200D9305F /* StatusView.swift in Sources */,
+				65296DA82816B01200D9305F /* ForecastingView.swift in Sources */,
 				65B6FA38281D62E200F619F0 /* AddTransactionView.swift in Sources */,
 				65296DA32816581D00D9305F /* OffsetPageTabView.swift in Sources */,
 				65C73DC42824144D00AD9EEF /* Tb_Transaction+CoreDataClass.swift in Sources */,

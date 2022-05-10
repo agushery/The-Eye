@@ -11,15 +11,15 @@ import SwiftUI
 struct MainView: View {
     var body: some View {
         TabView {
-            StatusView()
-                .tabItem{
-                    Image(systemName: "chart.xyaxis.line")
-                    Text("Status")
-                }
             TransactionView()
                 .tabItem{
                     Image(systemName: "list.triangle")
                     Text("Transaction")
+                }
+            ForecastingView()
+                .tabItem{
+                    Image(systemName: "chart.xyaxis.line")
+                    Text("Forecasting")
                 }
         }
     }

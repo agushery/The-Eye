@@ -8,10 +8,11 @@
 import SwiftUI
 import SwiftUICharts
 
-struct StatusView: View {
-    @State var didOnboarding: Bool = true
+struct ForecastingView: View {
+    
     @FetchRequest(sortDescriptors: [SortDescriptor(\.date)]) var transactions: FetchedResults<Tb_Transaction>
     @State var selectedValue = 0
+
     
     func getData()->[Double]{
         let data = transactions.map(){
@@ -19,14 +20,13 @@ struct StatusView: View {
         }
         return data
     }
-    func Moving() -> (data: [Double], title: String?){
+    func Moving() -> (data: [Double], title: String){
         let data = getData()
         let windowSize: Int = 3
         var sum: Double = 0.0
         var movingAverage: Double = 0.0
         let numberSize: Int = 9
-        let chartTitle: String = "Empty Data"
-        if data.count > 7 {
+        if data.count > 6 {
             var forecasting: [Double] = data.suffix(7)
             for i in 0...(numberSize-windowSize) {
                 for j in i..<i+windowSize{
@@ -38,10 +38,10 @@ struct StatusView: View {
                 //                print("Moving average: \(movingAverage)")
             }
             //            print(forecasting)
-            return (forecasting.suffix(7), nil)
+            return (forecasting.suffix(7), "")
         }
         else{
-            return ([0,0,0,0,0,0,0], chartTitle)
+            return ([0,0,0,0,0,0,0], "Empty Data")
         }
     }
     
@@ -53,19 +53,19 @@ struct StatusView: View {
                     .padding(.leading)
                     .padding(.trailing)
                     .padding(.bottom)
-                Text("Test")
+                VStack{
+                    Text("Ga je")
+                }
+                Spacer(minLength: 100)
             } // Vstak 1
-            .fullScreenCover(isPresented: $didOnboarding, content: {
-                Onboarding(didOnboarding: $didOnboarding)
-            })
-            .navigationTitle("Status")
+            .navigationTitle("Forecasting")
         } // navView
     } // var body
 } // struct
 
 
-struct StatusView_Previews: PreviewProvider {
+struct Forecasting_Previews: PreviewProvider {
     static var previews: some View {
-        StatusView()
+        ForecastingView()
     }
 }

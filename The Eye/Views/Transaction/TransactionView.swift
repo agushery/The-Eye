@@ -12,8 +12,15 @@ struct TransactionView: View {
     @FetchRequest(sortDescriptors: [
         NSSortDescriptor(keyPath: \Tb_Transaction.date, ascending: false)
     ]) var transactions: FetchedResults<Tb_Transaction>
+    
+    
+    
     @State var isAddTransaction: Bool = false
-
+    @State var didOnboarding: Bool = true
+    @State private var query = ""
+    
+    
+    
     func dollars(amount: Double) -> String{
         let formatter = NumberFormatter()
         formatter.locale = Locale(identifier: "id_ID")
@@ -33,49 +40,54 @@ struct TransactionView: View {
                 List{
                     ForEach(transactions){ trans in
                         let dates = trans.date
-//                        NavigationLink(destination: AddTransactionView(title: trans.title!, amount: trans.amount, type: trans.type!, selectedDate: trans.date!)){
-                            HStack{
-                                switch (trans.type!){
-                                case "Shopping":
-                                    Image(systemName: "cart")
-                                        .padding()
-                                        .foregroundColor(Color(#colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)))
-                                case "Transport":
-                                    Image(systemName: "car")
-                                        .padding()
-                                        .foregroundColor(Color(#colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)))
-                                case "Food":
-                                    Image(systemName: "archivebox")
-                                        .padding()
-                                        .foregroundColor(Color(#colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)))
-                                case "Health":
-                                    Image(systemName: "staroflife")
-                                        .padding()
-                                        .foregroundColor(Color(#colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)))
-                                default:
-                                    Image(systemName: "globe")
-                                        .padding()
-                                        .foregroundColor(Color(#colorLiteral(red: 0.5791940689, green: 0.1280144453, blue: 0.5726861358, alpha: 1)))
-                                }
-                                VStack{
-                                    Text(trans.title ?? "")
-                                    Text(dates?.toString(dateFormat: "dd-MM-yyyy" ) ?? "")
-                                }
-                                .padding(.leading, 20)
-                                Spacer()
-                                VStack{
-                                    Text("$. \(dollars(amount: trans.amount))")
-                                        .padding()
-                                }
+                        HStack{
+                            switch (trans.type!){
+                            case "Shopping":
+                                Image(systemName: "cart")
+                                    .padding()
+                                    .foregroundColor(Color(#colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)))
+                            case "Transport":
+                                Image(systemName: "car")
+                                    .padding()
+                                    .foregroundColor(Color(#colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)))
+                            case "Food":
+                                Image(systemName: "archivebox")
+                                    .padding()
+                                    .foregroundColor(Color(#colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)))
+                            case "Health":
+                                Image(systemName: "staroflife")
+                                    .padding()
+                                    .foregroundColor(Color(#colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)))
+                            default:
+                                Image(systemName: "globe")
+                                    .padding()
+                                    .foregroundColor(Color(#colorLiteral(red: 0.5791940689, green: 0.1280144453, blue: 0.5726861358, alpha: 1)))
                             }
-//                        }
+                            VStack{
+                                Text(trans.title ?? "")
+                                Text(dates?.toString(dateFormat: "dd-MM-yyyy" ) ?? "")
+                            }
+                            .padding(.leading, 20)
+                            Spacer()
+                            VStack{
+                                Text("$. \(dollars(amount: trans.amount))")
+                                    .padding()
+                            }
+                        }
                     }
                     .onDelete(perform: deleteItems)
+                }
+                .searchable(text: $query)
+                .onChange(of: query) { newValue in
+                    transactions.nsPredicate = searchPredicate(query: newValue)
                 }
                 .sheet(isPresented: $isAddTransaction) {
                     AddTransactionView(title: "", amount: 0, type: "", selectedDate: Date())
                 }
             } // Vstak 1
+            .fullScreenCover(isPresented: $didOnboarding, content: {
+                Onboarding(didOnboarding: $didOnboarding)
+            })
             .navigationTitle("Transaction")
             .toolbar{
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -86,9 +98,14 @@ struct TransactionView: View {
                     })
                 }
             }
-
+            
         } // navview
     } // var body
+    private func searchPredicate(query: String) -> NSPredicate? {
+        if query.isEmpty { return nil }
+        return NSPredicate(format: "%K BEGINSWITH[cd] %@",
+                           #keyPath(Tb_Transaction.title), query)
+    }
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
             offsets.map { transactions[$0] }.forEach(moc.delete)
