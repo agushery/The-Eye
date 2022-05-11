@@ -22,19 +22,18 @@ struct ForecastingView: View {
     }
     func Moving() -> (data: [Double], title: String){
         let data = getData()
-        let windowSize: Int = 3
+        let windowSize: Int = 7
         var sum: Double = 0.0
-        var movingAverage: Double = 0.0
-        let numberSize: Int = 9
         if data.count > 6 {
             var forecasting: [Double] = data.suffix(7)
-            for i in 0...(numberSize-windowSize) {
+            for i in 0..<(windowSize) {
+                sum = 0.0
                 for j in i..<i+windowSize{
                     sum += forecasting[j]
                     //                    print("\(forecasting[j]), ")
                 }
-                movingAverage = sum / Double(windowSize)
-                forecasting.append(movingAverage)
+                //movingAverage = sum / Double(windowSize)
+                forecasting.append(sum/Double(windowSize))
                 //                print("Moving average: \(movingAverage)")
             }
             //            print(forecasting)
@@ -54,7 +53,9 @@ struct ForecastingView: View {
                     .padding(.trailing)
                     .padding(.bottom)
                 VStack{
-                    Text("Ga je")
+                    ForEach(result.data, id: \.self){ forecast in
+                        Text("\(forecast)").tag(forecast)
+                    }
                 }
                 Spacer(minLength: 100)
             } // Vstak 1

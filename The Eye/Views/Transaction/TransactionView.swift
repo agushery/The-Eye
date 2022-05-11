@@ -14,11 +14,10 @@ struct TransactionView: View {
     ]) var transactions: FetchedResults<Tb_Transaction>
     
     
-    
+    @State var logToEdit: Tb_Transaction?
     @State var isAddTransaction: Bool = false
     @State var didOnboarding: Bool = true
     @State private var query = ""
-    
     
     
     func dollars(amount: Double) -> String{
@@ -81,6 +80,18 @@ struct TransactionView: View {
                 .onChange(of: query) { newValue in
                     transactions.nsPredicate = searchPredicate(query: newValue)
                 }
+//                .sheet(item: $logToEdit, onDismiss: {
+//                    self.logToEdit = nil
+//                }) { (log: Tb_Transaction) in
+//                    AddTransactionView(
+//                        logToEdit: log,
+//                        context: self.context,
+//                        title: log.title ?? "",
+//                        amount: log.amount ?? 0,
+//                        type: log.type ?? "",
+//                        selectedDate: log.date ?? Date()
+//                    )
+//                }
                 .sheet(isPresented: $isAddTransaction) {
                     AddTransactionView(title: "", amount: 0, type: "", selectedDate: Date())
                 }

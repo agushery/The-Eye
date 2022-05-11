@@ -12,6 +12,8 @@ struct AddTransactionView: View {
     @Environment(\.managedObjectContext) var moc
     @Environment(\.presentationMode) var dismiss
     
+    
+    
     @State var title: String
     @State var amount: Double
     @State var type: String
