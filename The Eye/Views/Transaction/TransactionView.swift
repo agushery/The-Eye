@@ -20,7 +20,7 @@ struct TransactionView: View {
     @State private var query = ""
     
     
-    func dollars(amount: Double) -> String{
+    func idr(amount: Double) -> String{
         let formatter = NumberFormatter()
         formatter.locale = Locale(identifier: "id_ID")
         formatter.groupingSeparator = "."
@@ -68,11 +68,9 @@ struct TransactionView: View {
                                 Text(dates?.toString(dateFormat: "dd-MM-yyyy" ) ?? "")
                                     .multilineTextAlignment(.leading)
                             }
-                            //.padding(.leading, 20)
                             Spacer()
                             VStack{
-                                Text("Rp. \(dollars(amount: trans.amount))")
-                                    .padding()
+                                Text("Rp. \(idr(amount: trans.amount))")
                             }
                         }
                     }

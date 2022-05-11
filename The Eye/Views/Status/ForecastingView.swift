@@ -20,11 +20,12 @@ struct ForecastingView: View {
         }
         return data
     }
+    
     func Moving() -> (data: [Double], title: String){
         let data = getData()
         let windowSize: Int = 7
         var sum: Double = 0.0
-        if data.count > 6 {
+        if data.count > 7 {
             var forecasting: [Double] = data.suffix(7)
             for i in 0..<(windowSize) {
                 sum = 0.0
@@ -40,12 +41,36 @@ struct ForecastingView: View {
         }
     }
     
+    func meanAbsoluteError() -> Double{
+        let data = getData()
+        let windowSize: Int = 7
+        let numberSize = data.count
+        var sum: Double = 0.0
+        var mae: [Double] = []
+        var errorResult: Double = 0.0
+        for i in 0..<(numberSize-windowSize){
+            sum = 0.0
+            for j in i...windowSize {
+                sum+=data[j]
+            }
+            mae.append(sum/Double(windowSize))
+        }
+        let dataActual: [Double] = data.suffix(mae.count)
+        for i in 0..<mae.count{
+            errorResult+=(abs(mae[i]-dataActual[i]))
+            
+        }
+        return errorResult/2
+    }
+    
+    
     var body: some View {
         let result = Moving()
+        //let marginError = meanAbsoluteError()
         NavigationView {
             VStack{
                 VStack(alignment: .leading){
-                    Text("A simple moving average (SMA) is an arithmetic moving average calculated by adding recent prices and then dividing that figure by the number of time periods in the calculation average. Short-term averages respond quickly to changes in the price of the underlying security, while long-term averages are slower to react.")
+                    Text("One type of time series forecasting is simple moving average (SMA). SMA is an arithmetic moving average calculated by adding recent prices and then dividing that figure by the number of time periods in the calculation average.")
                         .font(.body)
                     Text("Your result can see below")
                         .font(.body.bold())
@@ -55,7 +80,7 @@ struct ForecastingView: View {
                 Picker(selection: $selectedValue, label: Text("")){
                     Text("Line Chart").tag(0)
                     Text("Data Result").tag(1)
-                    Text("Margin Error").tag(2)
+                    Text("MAE").tag(2)
                 }.pickerStyle(SegmentedPickerStyle())
                 if result.data == [0] {
                     EmptyDataView()
@@ -65,7 +90,7 @@ struct ForecastingView: View {
                     } else if selectedValue == 1 {
                         YourDataView(data: result.data)
                     } else {
-                        MarginErrorView(getData: getData())
+                        MAEView(getData: meanAbsoluteError())
                     }
                 }
             } // Vstak 1
@@ -75,10 +100,11 @@ struct ForecastingView: View {
 } // struct
 struct YourDataView: View{
     @State var data: [Double]
+    let convert = TransactionView()
     var body: some View{
         List{
             ForEach(data, id: \.self){ forecast in
-                Text("Rp. \(forecast)").tag(forecast)
+                Text("Rp. \(convert.idr(amount: forecast))").tag(forecast)
             }
         }
         Spacer()
@@ -104,23 +130,50 @@ struct EmptyDataView: View{
             Spacer()
             Text("Data Not Found")
                 .font(.title)
-            Text("Please Insert Transaction")
+            Text("Please Insert Minimum 8 Recorded Transaction")
                 .font(.caption)
             Spacer()
         }
     }
 }
 
-struct MarginErrorView: View{
-    @State var getData: [Double]
+struct MAEView: View{
+    @State var getData: Double
+    let convert = TransactionView()
     var body: some View{
-        VStack{
-            Spacer()
-            ForEach(getData, id: \.self){forecast in
-                Text("\(forecast)").tag(forecast)
+        ScrollView{
+            VStack {
+                Image("MAE")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("Your Mean Absolute Error is...")
+                            .font(.headline)
+                            .foregroundColor(.secondary)
+                        Text("Rp.\(convert.idr(amount: getData))")
+                            .font(.title)
+                            .fontWeight(.black)
+                            .foregroundColor(.primary)
+                            .lineLimit(3)
+                            .padding(.bottom)
+                        Text("The mean absolute error (MAE) is the average magnitude of the error in a series of forecasts, regardless of direction. It measures accuracy for continuous variables")
+                            .font(.body)
+                            .foregroundColor(.secondary)
+                    }
+                    .layoutPriority(100)
+                    
+                    Spacer()
+                }
+                .padding()
             }
-            Spacer()
-        }
+            .cornerRadius(10)
+            .overlay(
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color(.sRGB, red: 150/255, green: 150/255, blue: 150/255, opacity: 0.1), lineWidth: 1)
+            )
+            .padding([.top, .horizontal])    }
     }
 }
 
