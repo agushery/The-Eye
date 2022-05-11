@@ -64,12 +64,14 @@ struct TransactionView: View {
                             }
                             VStack{
                                 Text(trans.title ?? "")
+                                    .multilineTextAlignment(.leading)
                                 Text(dates?.toString(dateFormat: "dd-MM-yyyy" ) ?? "")
+                                    .multilineTextAlignment(.leading)
                             }
-                            .padding(.leading, 20)
+                            //.padding(.leading, 20)
                             Spacer()
                             VStack{
-                                Text("$. \(dollars(amount: trans.amount))")
+                                Text("Rp. \(dollars(amount: trans.amount))")
                                     .padding()
                             }
                         }
