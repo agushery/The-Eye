@@ -12,7 +12,7 @@ struct ForecastingView: View {
     
     @FetchRequest(sortDescriptors: [SortDescriptor(\.date)]) var transactions: FetchedResults<Tb_Transaction>
     @State var selectedValue = 0
-    @State var didOnboarding: Bool = true
+    @AppStorage("didOnboarding") var didOnboarding: Bool = true
     
     func getData()->[Double]{
         let data = transactions.map(){
