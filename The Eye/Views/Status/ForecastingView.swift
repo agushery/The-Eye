@@ -12,7 +12,7 @@ struct ForecastingView: View {
     
     @FetchRequest(sortDescriptors: [SortDescriptor(\.date)]) var transactions: FetchedResults<Tb_Transaction>
     @State var selectedValue = 0
-    
+    @State var didOnboarding: Bool = true
     
     func getData()->[Double]{
         let data = transactions.map(){
@@ -34,7 +34,7 @@ struct ForecastingView: View {
                 }
                 forecasting.append(sum/Double(windowSize))
             }
-            return (forecasting.suffix(7), "")
+            return (forecasting.suffix(7), "Line Chart")
         }
         else{
             return ([0], "Empty Data")
@@ -63,7 +63,6 @@ struct ForecastingView: View {
         return errorResult/2
     }
     
-    
     var body: some View {
         let result = Moving()
         //let marginError = meanAbsoluteError()
@@ -72,6 +71,7 @@ struct ForecastingView: View {
                 VStack(alignment: .leading){
                     Text("One type of time series forecasting is simple moving average (SMA). SMA is an arithmetic moving average calculated by adding recent prices and then dividing that figure by the number of time periods in the calculation average.")
                         .font(.body)
+                        .padding(.bottom,10)
                     Text("Your result can see below")
                         .font(.body.bold())
                         .multilineTextAlignment(.leading)
@@ -96,6 +96,9 @@ struct ForecastingView: View {
             } // Vstak 1
             .navigationTitle("Forecasting")
         } // navView
+        .fullScreenCover(isPresented: $didOnboarding, content: {
+            Onboarding(didOnboarding: $didOnboarding)
+        })
     } // var body
 } // struct
 struct YourDataView: View{
@@ -140,6 +143,7 @@ struct EmptyDataView: View{
 struct MAEView: View{
     @State var getData: Double
     let convert = TransactionView()
+    let result = ForecastingView()
     var body: some View{
         ScrollView{
             VStack {
@@ -152,12 +156,12 @@ struct MAEView: View{
                         Text("Your Mean Absolute Error is...")
                             .font(.headline)
                             .foregroundColor(.secondary)
-                        Text("Rp.\(convert.idr(amount: getData))")
+                        Text("Rp. \(convert.idr(amount: getData))")
                             .font(.title)
                             .fontWeight(.black)
                             .foregroundColor(.primary)
                             .lineLimit(3)
-                            .padding(.bottom)
+                            .padding(.bottom,1)
                         Text("The mean absolute error (MAE) is the average magnitude of the error in a series of forecasts, regardless of direction. It measures accuracy for continuous variables")
                             .font(.body)
                             .foregroundColor(.secondary)

@@ -11,7 +11,6 @@ import SwiftUI
 struct Onboarding: View {
     @Binding var didOnboarding: Bool
     @State var offset: CGFloat = 0
-    //@State var titleButtonNext: String = "Next"
     var i: Int = 0
     
     var body: some View {

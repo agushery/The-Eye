@@ -16,7 +16,6 @@ struct TransactionView: View {
     
     @State var logToEdit: Tb_Transaction?
     @State var isAddTransaction: Bool = false
-    @State var didOnboarding: Bool = true
     @State private var query = ""
     
     
@@ -64,9 +63,7 @@ struct TransactionView: View {
                             }
                             VStack{
                                 Text(trans.title ?? "")
-                                    .multilineTextAlignment(.leading)
                                 Text(dates?.toString(dateFormat: "dd-MM-yyyy" ) ?? "")
-                                    .multilineTextAlignment(.leading)
                             }
                             Spacer()
                             VStack{
@@ -96,9 +93,6 @@ struct TransactionView: View {
                     AddTransactionView(title: "", amount: 0, type: "", selectedDate: Date())
                 }
             } // Vstak 1
-            .fullScreenCover(isPresented: $didOnboarding, content: {
-                Onboarding(didOnboarding: $didOnboarding)
-            })
             .navigationTitle("Transaction")
             .toolbar{
                 ToolbarItem(placement: .navigationBarTrailing) {
