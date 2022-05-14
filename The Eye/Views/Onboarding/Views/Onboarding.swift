@@ -22,8 +22,8 @@ struct Onboarding: View {
                         Image(screen.image)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: getScreenBounds().width - 100, height: getScreenBounds().height - 500)
-                            .offset(y: -120)
+                            .frame(width: getScreenBounds().width - 200, height: getScreenBounds().height - 400)
+                            .offset(y: -100)
                         
                         VStack(alignment: .leading, spacing: 12){
                             Text(screen.title)
@@ -36,6 +36,7 @@ struct Onboarding: View {
                                 .foregroundColor(.white)
                         }// Vstack 2
                         .frame(maxWidth: .infinity, alignment: .center)
+                        .padding(.top)
                         
                     } // Vstak 1
                     .padding()

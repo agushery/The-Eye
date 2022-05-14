@@ -12,7 +12,8 @@ struct ForecastingView: View {
     
     @FetchRequest(sortDescriptors: [SortDescriptor(\.date)]) var transactions: FetchedResults<Tb_Transaction>
     @State var selectedValue = 0
-    @AppStorage("didOnboarding") var didOnboarding: Bool = true
+    @State var didOnboarding: Bool = true
+//    @AppStorage("didOnboarding") var didOnboarding: Bool = true
     
     func getData()->[Double]{
         let data = transactions.map(){
@@ -23,9 +24,10 @@ struct ForecastingView: View {
     
     func Moving() -> (data: [Double], title: String){
         let data = getData()
+        let dates = TransactionView()
         let windowSize: Int = 7
         var sum: Double = 0.0
-        if data.count > 7 {
+        if dates.update(transactions).count > 7 {
             var forecasting: [Double] = data.suffix(7)
             for i in 0..<(windowSize) {
                 sum = 0.0
@@ -54,13 +56,16 @@ struct ForecastingView: View {
                 sum+=data[j]
             }
             mae.append(sum/Double(windowSize))
+           
         }
+        print(mae)
         let dataActual: [Double] = data.suffix(mae.count)
+        print(dataActual)
         for i in 0..<mae.count{
             errorResult+=(abs(mae[i]-dataActual[i]))
             
         }
-        return errorResult/2
+        return errorResult/Double(mae.count)
     }
     
     var body: some View {
@@ -133,7 +138,7 @@ struct EmptyDataView: View{
             Spacer()
             Text("Data Not Found")
                 .font(.title)
-            Text("Please Insert Minimum 8 Recorded Transaction")
+            Text("Please Insert Minimum 8 Different Dates Recorded Transaction")
                 .font(.caption)
             Spacer()
         }

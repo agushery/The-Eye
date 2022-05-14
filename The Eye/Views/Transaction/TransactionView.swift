@@ -14,10 +14,17 @@ struct TransactionView: View {
     ]) var transactions: FetchedResults<Tb_Transaction>
     
     
-    @State var logToEdit: Tb_Transaction?
+    @State var isEdit: Bool = false
     @State var isAddTransaction: Bool = false
     @State private var query = ""
+    @State private var needsRefresh: Bool = false
     
+    
+    func dayAmount(){
+        for i in 0...transactions.count{
+            print(i)
+        }
+    }
     
     func idr(amount: Double) -> String{
         let formatter = NumberFormatter()
@@ -30,65 +37,71 @@ struct TransactionView: View {
         }
         return harga
     }
-    
+    static let dateFormat: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        return formatter
+    }()
+    var dateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        return formatter
+    }
+    func update(_ result : FetchedResults<Tb_Transaction>)-> [[Tb_Transaction]]{
+        return  Dictionary(grouping: result){ (element : Tb_Transaction)  in
+            //dateFormatter.string(from: element.date!)
+            element.date!.toString(dateFormat: "dd-MM-yyyy")
+        }.values.sorted() { $0[0].date! > $1[0].date! }
+    }
     
     var body: some View {
         NavigationView{
             VStack{
-                List{
-                    ForEach(transactions){ trans in
-                        let dates = trans.date
-                        HStack{
-                            switch (trans.type!){
-                            case "Shopping":
-                                Image(systemName: "cart")
-                                    .padding()
-                                    .foregroundColor(Color(#colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)))
-                            case "Transport":
-                                Image(systemName: "car")
-                                    .padding()
-                                    .foregroundColor(Color(#colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)))
-                            case "Food":
-                                Image(systemName: "archivebox")
-                                    .padding()
-                                    .foregroundColor(Color(#colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)))
-                            case "Health":
-                                Image(systemName: "staroflife")
-                                    .padding()
-                                    .foregroundColor(Color(#colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)))
-                            default:
-                                Image(systemName: "globe")
-                                    .padding()
-                                    .foregroundColor(Color(#colorLiteral(red: 0.5791940689, green: 0.1280144453, blue: 0.5726861358, alpha: 1)))
+                List {
+                    ForEach(update(transactions), id: \.self) { (section: [Tb_Transaction]) in
+                        Section(header: Text( section[0].date!.toString(dateFormat: "dd-MM-yyyy" ))) {
+                            
+                            ForEach(section, id: \.self) { todo in
+                                HStack {
+                                    switch (todo.type!){
+                                    case "Shopping":
+                                        Image(systemName: "cart")
+                                            .padding()
+                                            .foregroundColor(Color(#colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)))
+                                    case "Transport":
+                                        Image(systemName: "car")
+                                            .padding()
+                                            .foregroundColor(Color(#colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)))
+                                    case "Food":
+                                        Image(systemName: "archivebox")
+                                            .padding()
+                                            .foregroundColor(Color(#colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)))
+                                    case "Health":
+                                        Image(systemName: "staroflife")
+                                            .padding()
+                                            .foregroundColor(Color(#colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)))
+                                    default:
+                                        Image(systemName: "globe")
+                                            .padding()
+                                            .foregroundColor(Color(#colorLiteral(red: 0.5791940689, green: 0.1280144453, blue: 0.5726861358, alpha: 1)))
+                                    }
+                                    Text(todo.title ?? "")
+                                    Spacer()
+                                    Text("Rp. \(idr(amount: todo.amount))")
+                                }
                             }
-                            VStack{
-                                Text(trans.title ?? "")
-                                Text(dates?.toString(dateFormat: "dd-MM-yyyy" ) ?? "")
-                            }
-                            Spacer()
-                            VStack{
-                                Text("Rp. \(idr(amount: trans.amount))")
-                            }
+                            //.onDelete(perform: deleteItems)
+                            .onDelete { indexSet in
+                                deleteItem(section: Array(section), offsets: indexSet)
+                                }
                         }
-                    }
-                    .onDelete(perform: deleteItems)
+                    }.id(transactions.count)
+                    
                 }
                 .searchable(text: $query)
                 .onChange(of: query) { newValue in
                     transactions.nsPredicate = searchPredicate(query: newValue)
                 }
-//                .sheet(item: $logToEdit, onDismiss: {
-//                    self.logToEdit = nil
-//                }) { (log: Tb_Transaction) in
-//                    AddTransactionView(
-//                        logToEdit: log,
-//                        context: self.context,
-//                        title: log.title ?? "",
-//                        amount: log.amount ?? 0,
-//                        type: log.type ?? "",
-//                        selectedDate: log.date ?? Date()
-//                    )
-//                }
                 .sheet(isPresented: $isAddTransaction) {
                     AddTransactionView(title: "", amount: 0, type: "", selectedDate: Date())
                 }
@@ -99,7 +112,11 @@ struct TransactionView: View {
                     Button(action: {
                         isAddTransaction.toggle()
                     }, label: {
-                        Image(systemName: "plus")
+                        HStack{
+                            Image(systemName: "plus")
+                            Text("Add")
+                        }
+                        
                     })
                 }
             }
@@ -111,28 +128,19 @@ struct TransactionView: View {
         return NSPredicate(format: "%K BEGINSWITH[cd] %@",
                            #keyPath(Tb_Transaction.title), query)
     }
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { transactions[$0] }.forEach(moc.delete)
-            do {
-                try moc.save()
-            } catch {
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
+    private func deleteItem(section: [Tb_Transaction], offsets: IndexSet) {
+        for index in offsets {
+            let item = section[index]
+            moc.delete(item)
+        }
+        do {
+            try moc.save()
+        } catch {
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
     }
-    private func editItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { transactions[$0] }.forEach(moc.delete)
-            do {
-                try moc.save()
-            } catch {
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
+
 } // struck
 
 struct TransactionView_Previews: PreviewProvider {
