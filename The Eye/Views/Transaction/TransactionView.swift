@@ -37,19 +37,8 @@ struct TransactionView: View {
         }
         return harga
     }
-    static let dateFormat: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        return formatter
-    }()
-    var dateFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .short
-        return formatter
-    }
     func update(_ result : FetchedResults<Tb_Transaction>)-> [[Tb_Transaction]]{
         return  Dictionary(grouping: result){ (element : Tb_Transaction)  in
-            //dateFormatter.string(from: element.date!)
             element.date!.toString(dateFormat: "dd-MM-yyyy")
         }.values.sorted() { $0[0].date! > $1[0].date! }
     }
@@ -103,7 +92,7 @@ struct TransactionView: View {
                     transactions.nsPredicate = searchPredicate(query: newValue)
                 }
                 .sheet(isPresented: $isAddTransaction) {
-                    AddTransactionView(title: "", amount: 0, type: "", selectedDate: Date())
+                    AddTransactionView(title: "", amount: nil, type: "", selectedDate: Date())
                 }
             } // Vstak 1
             .navigationTitle("Transaction")

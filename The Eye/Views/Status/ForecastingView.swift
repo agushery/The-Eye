@@ -13,7 +13,13 @@ struct ForecastingView: View {
     @FetchRequest(sortDescriptors: [SortDescriptor(\.date)]) var transactions: FetchedResults<Tb_Transaction>
     @State var selectedValue = 0
     @State var didOnboarding: Bool = true
-//    @AppStorage("didOnboarding") var didOnboarding: Bool = true
+    var attributedString: AttributedString
+    //    @AppStorage("didOnboarding") var didOnboarding: Bool = true
+    
+    init() {
+        //or like this:
+        attributedString = try! AttributedString(markdown: "[#More info](https://en.wikipedia.org/wiki/Moving_average)")
+    }
     
     func getData()->[Double]{
         let data = transactions.map(){
@@ -56,11 +62,10 @@ struct ForecastingView: View {
                 sum+=data[j]
             }
             mae.append(sum/Double(windowSize))
-           
+            
         }
-        print(mae)
         let dataActual: [Double] = data.suffix(mae.count)
-        print(dataActual)
+        
         for i in 0..<mae.count{
             errorResult+=(abs(mae[i]-dataActual[i]))
             
@@ -74,7 +79,7 @@ struct ForecastingView: View {
         NavigationView {
             VStack{
                 VStack(alignment: .leading){
-                    Text("One type of time series forecasting is simple moving average (SMA). SMA is an arithmetic moving average calculated by adding recent prices and then dividing that figure by the number of time periods in the calculation average.")
+                    Text("One type of time series forecasting is simple moving average (SMA). SMA is an arithmetic moving average calculated by adding recent prices and then dividing that figure by the number of time periods in the calculation average. \(attributedString)")
                         .font(.body)
                         .padding(.bottom,10)
                     Text("Your result can see below")
@@ -182,7 +187,8 @@ struct MAEView: View{
                 RoundedRectangle(cornerRadius: 10)
                     .stroke(Color(.sRGB, red: 150/255, green: 150/255, blue: 150/255, opacity: 0.1), lineWidth: 1)
             )
-            .padding([.top, .horizontal])    }
+            .padding([.top, .horizontal])
+        }
     }
 }
 
