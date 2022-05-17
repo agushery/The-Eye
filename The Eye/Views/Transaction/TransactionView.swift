@@ -72,11 +72,12 @@ struct TransactionView: View {
                 }
                 List {
                     ForEach(update(transactions), id: \.self) { (section: [Tb_Transaction]) in
+                        let dailyTotal = section.reduce(0) { $0 + $1.amount }
                         Section(header:
                                     HStack{
                                     Text( section[0].date!.toString(dateFormat: "dd-MM-yyyy" ))
                             Spacer()
-                            Text("Rp.\(idr(amount: section[0].amount))")
+                            Text("Rp.\(idr(amount: dailyTotal))")
                         }
                         ) {
                             
