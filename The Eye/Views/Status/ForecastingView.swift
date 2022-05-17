@@ -13,12 +13,43 @@ struct ForecastingView: View {
     @FetchRequest(sortDescriptors: [SortDescriptor(\.date)]) var transactions: FetchedResults<Tb_Transaction>
     @State var selectedValue = 0
     @State var didOnboarding: Bool = true
+    
+    typealias TransactionPrefixSum = [(String, Double)]
+    
     var attributedString: AttributedString
     //    @AppStorage("didOnboarding") var didOnboarding: Bool = true
     
     init() {
         //or like this:
         attributedString = try! AttributedString(markdown: "[#More info](https://en.wikipedia.org/wiki/Moving_average)")
+    }
+    func dataForecasting() -> [Double]{
+        guard !transactions.isEmpty else { return [] }
+        let today = Date()
+        let dateInterval = Calendar.current.dateInterval(of: .month, for: today)!
+        var sum: Double = 0.0
+        var cumulativeSum = TransactionPrefixSum()
+        var dailyAmount: [Double] = []
+        for date in stride(from: dateInterval.start, to: today, by: 60 * 60 * 24) {
+            
+            let dailyExpenses = transactions.filter{
+//                print("DATE FOR LOOP: ",date)
+//                print("DATE CORE DATA: ", $0.date!)
+                return $0.date?.toString(dateFormat: "dd/MM/yyyy") == date.toString(dateFormat: "dd/MM/yyyy")
+            }
+            let dailyTotal = dailyExpenses.reduce(0) { $0 + $1.amount }
+            //print(dailyExpenses)
+            
+            dailyAmount.append(dailyTotal)
+            sum += dailyTotal
+            
+            if dailyTotal != 0.0 {
+                print("NOL BESAR")
+                cumulativeSum.append((date.toString(dateFormat: "dd/MM/yyyy"), sum))
+                print(date.toString(dateFormat: "dd/MM/yyyy"), "Daily Total: ", dailyTotal, "sum: ", sum)
+            }
+        }
+        return dailyAmount.filter { $0 != 0.0 }
     }
     
     func getData()->[Double]{
@@ -29,7 +60,7 @@ struct ForecastingView: View {
     }
     
     func Moving() -> (data: [Double], title: String){
-        let data = getData()
+        let data = dataForecasting()
         let dates = TransactionView()
         let windowSize: Int = 7
         var sum: Double = 0.0
@@ -50,7 +81,7 @@ struct ForecastingView: View {
     }
     
     func meanAbsoluteError() -> Double{
-        let data = getData()
+        let data = dataForecasting()
         let windowSize: Int = 7
         let numberSize = data.count
         var sum: Double = 0.0
@@ -79,6 +110,9 @@ struct ForecastingView: View {
         NavigationView {
             VStack{
                 VStack(alignment: .leading){
+                    Button("Cek"){
+                        print(dataForecasting())
+                    }
                     Text("One type of time series forecasting is simple moving average (SMA). SMA is an arithmetic moving average calculated by adding recent prices and then dividing that figure by the number of time periods in the calculation average. \(attributedString)")
                         .font(.body)
                         .padding(.bottom,10)

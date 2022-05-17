@@ -16,6 +16,7 @@
 		65296DA1281654B300D9305F /* BoardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65296DA0281654B300D9305F /* BoardingScreen.swift */; };
 		65296DA32816581D00D9305F /* OffsetPageTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65296DA22816581D00D9305F /* OffsetPageTabView.swift */; };
 		65296DA82816B01200D9305F /* ForecastingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65296DA72816B01200D9305F /* ForecastingView.swift */; };
+		65A3AF062833A43200A8007B /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A3AF052833A43200A8007B /* Extension.swift */; };
 		65B6FA0D281856A500F619F0 /* TransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B6FA0C281856A500F619F0 /* TransactionView.swift */; };
 		65B6FA0F281A394900F619F0 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B6FA0E281A394900F619F0 /* Persistence.swift */; };
 		65B6FA38281D62E200F619F0 /* AddTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B6FA37281D62E200F619F0 /* AddTransactionView.swift */; };
@@ -35,6 +36,7 @@
 		65296DA0281654B300D9305F /* BoardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardingScreen.swift; sourceTree = "<group>"; };
 		65296DA22816581D00D9305F /* OffsetPageTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetPageTabView.swift; sourceTree = "<group>"; };
 		65296DA72816B01200D9305F /* ForecastingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastingView.swift; sourceTree = "<group>"; };
+		65A3AF052833A43200A8007B /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		65B6FA0C281856A500F619F0 /* TransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionView.swift; sourceTree = "<group>"; };
 		65B6FA0E281A394900F619F0 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		65B6FA37281D62E200F619F0 /* AddTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionView.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 		65296D73281645E100D9305F /* The Eye */ = {
 			isa = PBXGroup;
 			children = (
+				65A3AF042833A42500A8007B /* Helper */,
 				65B6FA50281E2C8200F619F0 /* Views */,
 				65B6FA4C281E2BCF00F619F0 /* CoreData */,
 				65B6FA4D281E2BE800F619F0 /* Models */,
@@ -125,6 +128,14 @@
 				65296DA72816B01200D9305F /* ForecastingView.swift */,
 			);
 			path = Status;
+			sourceTree = "<group>";
+		};
+		65A3AF042833A42500A8007B /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				65A3AF052833A43200A8007B /* Extension.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 		65B6FA0A281792F200F619F0 /* Transaction */ = {
@@ -248,6 +259,7 @@
 				65B6FA0D281856A500F619F0 /* TransactionView.swift in Sources */,
 				65B6FA0F281A394900F619F0 /* Persistence.swift in Sources */,
 				65296D75281645E100D9305F /* The_EyeApp.swift in Sources */,
+				65A3AF062833A43200A8007B /* Extension.swift in Sources */,
 				65296D882816460800D9305F /* MainView.swift in Sources */,
 				65296DA1281654B300D9305F /* BoardingScreen.swift in Sources */,
 				65296D81281645E300D9305F /* The_Eye.xcdatamodeld in Sources */,

@@ -120,7 +120,6 @@ struct Onboarding: View {
     
 } // struct
 
-
 // extending view to get screen bounds
 extension View {
     func getScreenBounds()->CGRect{

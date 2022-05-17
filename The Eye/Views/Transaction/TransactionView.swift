@@ -18,13 +18,8 @@ struct TransactionView: View {
     @State var isAddTransaction: Bool = false
     @State private var query = ""
     @State private var needsRefresh: Bool = false
+    typealias TransactionPrefixSum = [(String, Double)]
     
-    
-    func dayAmount(){
-        for i in 0...transactions.count{
-            print(i)
-        }
-    }
     
     func idr(amount: Double) -> String{
         let formatter = NumberFormatter()
@@ -43,12 +38,46 @@ struct TransactionView: View {
         }.values.sorted() { $0[0].date! > $1[0].date! }
     }
     
+    func getData() -> TransactionPrefixSum{
+        guard !transactions.isEmpty else { return [] }
+        let today = Date()
+        let dateInterval = Calendar.current.dateInterval(of: .month, for: today)!
+        var cumulativeSum = TransactionPrefixSum()
+        var dailyAmount: [Double] = []
+        for date in stride(from: dateInterval.start, to: today, by: 60 * 60 * 24) {
+            
+            let dailyExpenses = transactions.filter{
+//                print("DATE FOR LOOP: ",date)
+//                print("DATE CORE DATA: ", $0.date!)
+                return $0.date?.toString(dateFormat: "dd/MM/yyyy") == date.toString(dateFormat: "dd/MM/yyyy")
+            }
+            let dailyTotal = dailyExpenses.reduce(0) { $0 + $1.amount }
+            //print(dailyExpenses)
+            
+            dailyAmount.append(dailyTotal)
+            
+            if dailyTotal != 0.0 {
+                cumulativeSum.append((date.toString(dateFormat: "dd/MM/yyyy"), dailyTotal))
+                print(date.toString(dateFormat: "dd/MM/yyyy"), "Daily Total: ", dailyTotal)
+            }
+        }
+        return cumulativeSum
+    }
     var body: some View {
         NavigationView{
             VStack{
+                Button("CEK"){
+                    print(getData().reversed()[0].1)
+                }
                 List {
                     ForEach(update(transactions), id: \.self) { (section: [Tb_Transaction]) in
-                        Section(header: Text( section[0].date!.toString(dateFormat: "dd-MM-yyyy" ))) {
+                        Section(header:
+                                    HStack{
+                                    Text( section[0].date!.toString(dateFormat: "dd-MM-yyyy" ))
+                            Spacer()
+                            Text("\(idr(amount: section[0].amount))")
+                        }
+                        ) {
                             
                             ForEach(section, id: \.self) { todo in
                                 HStack {
@@ -136,15 +165,4 @@ struct TransactionView_Previews: PreviewProvider {
     static var previews: some View {
         TransactionView()
     }
-}
-
-extension Date
-{
-    func toString( dateFormat format  : String ) -> String
-    {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = format
-        return dateFormatter.string(from: self)
-    }
-    
 }
