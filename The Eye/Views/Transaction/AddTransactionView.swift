@@ -33,7 +33,6 @@ struct AddTransactionView: View {
                             Text($0)
                         }
                     }
-                    .pickerStyle(.menu)
                 }
                 Section(header: Text("Amount")){
                     HStack{
