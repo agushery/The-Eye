@@ -38,7 +38,7 @@ struct TransactionView: View {
         }.values.sorted() { $0[0].date! > $1[0].date! }
     }
     
-    func getData() -> TransactionPrefixSum{
+    func listData() -> TransactionPrefixSum{
         guard !transactions.isEmpty else { return [] }
         let today = Date()
         let dateInterval = Calendar.current.dateInterval(of: .month, for: today)!
@@ -61,13 +61,14 @@ struct TransactionView: View {
                 print(date.toString(dateFormat: "dd/MM/yyyy"), "Daily Total: ", dailyTotal)
             }
         }
+        print(type(of: [Tb_Transaction].self))
         return cumulativeSum
     }
     var body: some View {
         NavigationView{
             VStack{
                 Button("CEK"){
-                    print(getData().reversed()[0].1)
+                    print(listData())
                 }
                 List {
                     ForEach(update(transactions), id: \.self) { (section: [Tb_Transaction]) in
@@ -75,7 +76,7 @@ struct TransactionView: View {
                                     HStack{
                                     Text( section[0].date!.toString(dateFormat: "dd-MM-yyyy" ))
                             Spacer()
-                            Text("\(idr(amount: section[0].amount))")
+                            Text("Rp.\(idr(amount: section[0].amount))")
                         }
                         ) {
                             
@@ -98,8 +99,20 @@ struct TransactionView: View {
                                         Image(systemName: "staroflife")
                                             .padding()
                                             .foregroundColor(Color(#colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)))
+                                    case "Donation":
+                                        Image(systemName: "heart.circle.fill")
+                                            .padding()
+                                            .foregroundColor(Color(#colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)))
+                                    case "Entertainment":
+                                        Image(systemName: "tv.music.note")
+                                            .padding()
+                                            .foregroundColor(Color(#colorLiteral(red: 0.5807225108, green: 0.066734083, blue: 0, alpha: 1)))
+                                    case "Utilities":
+                                        Image(systemName: "bolt")
+                                            .padding()
+                                            .foregroundColor(Color(#colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)))
                                     default:
-                                        Image(systemName: "globe")
+                                        Image(systemName: "tag")
                                             .padding()
                                             .foregroundColor(Color(#colorLiteral(red: 0.5791940689, green: 0.1280144453, blue: 0.5726861358, alpha: 1)))
                                     }

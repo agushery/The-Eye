@@ -18,7 +18,7 @@ struct AddTransactionView: View {
     @State var selectedDate: Date
     
     
-    let types = ["Shopping", "Transport", "Food", "Health", "Others"]
+    let types = ["Shopping", "Transport", "Food", "Health", "Donation", "Entertainment", "Utilities","Others"]
     
     var body: some View {
         NavigationView{
