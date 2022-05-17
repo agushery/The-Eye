@@ -47,8 +47,8 @@ struct TransactionView: View {
         for date in stride(from: dateInterval.start, to: today, by: 60 * 60 * 24) {
             
             let dailyExpenses = transactions.filter{
-//                print("DATE FOR LOOP: ",date)
-//                print("DATE CORE DATA: ", $0.date!)
+                //                print("DATE FOR LOOP: ",date)
+                //                print("DATE CORE DATA: ", $0.date!)
                 return $0.date?.toString(dateFormat: "dd/MM/yyyy") == date.toString(dateFormat: "dd/MM/yyyy")
             }
             let dailyTotal = dailyExpenses.reduce(0) { $0 + $1.amount }
@@ -67,20 +67,17 @@ struct TransactionView: View {
     var body: some View {
         NavigationView{
             VStack{
-                Button("CEK"){
-                    print(listData())
-                }
                 List {
                     ForEach(update(transactions), id: \.self) { (section: [Tb_Transaction]) in
                         let dailyTotal = section.reduce(0) { $0 + $1.amount }
                         Section(header:
                                     HStack{
-                                    Text( section[0].date!.toString(dateFormat: "dd-MM-yyyy" ))
-                            Spacer()
-                            Text("Rp.\(idr(amount: dailyTotal))")
-                        }
-                        ) {
-                            
+                                        Text( section[0].date!.toString(dateFormat: "dd-MM-yyyy" ))
+                                        Spacer()
+                                        Text("Rp.\(idr(amount: dailyTotal))")
+                                    }
+                                )
+                        {
                             ForEach(section, id: \.self) { todo in
                                 HStack {
                                     switch (todo.type!){
@@ -125,7 +122,7 @@ struct TransactionView: View {
                             //.onDelete(perform: deleteItems)
                             .onDelete { indexSet in
                                 deleteItem(section: Array(section), offsets: indexSet)
-                                }
+                            }
                         }
                     }.id(transactions.count)
                     
@@ -172,7 +169,7 @@ struct TransactionView: View {
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
     }
-
+    
 } // struck
 
 struct TransactionView_Previews: PreviewProvider {

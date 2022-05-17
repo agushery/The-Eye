@@ -110,9 +110,6 @@ struct ForecastingView: View {
         NavigationView {
             VStack{
                 VStack(alignment: .leading){
-                    Button("Cek"){
-                        print(dataForecasting())
-                    }
                     Text("One type of time series forecasting is simple moving average (SMA). SMA is an arithmetic moving average calculated by adding recent prices and then dividing that figure by the number of time periods in the calculation average. \(attributedString)")
                         .font(.body)
                         .padding(.bottom,10)
