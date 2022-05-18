@@ -26,7 +26,7 @@ struct ForecastingView: View {
     func dataForecasting() -> [Double]{
         guard !transactions.isEmpty else { return [] }
         let today = Date()
-        let dateInterval = Calendar.current.dateInterval(of: .month, for: today)!
+        let dateInterval = Calendar.current.dateInterval(of: .year, for: today)!
         var sum: Double = 0.0
         var cumulativeSum = TransactionPrefixSum()
         var dailyAmount: [Double] = []
@@ -44,9 +44,8 @@ struct ForecastingView: View {
             sum += dailyTotal
             
             if dailyTotal != 0.0 {
-                print("NOL BESAR")
                 cumulativeSum.append((date.toString(dateFormat: "dd/MM/yyyy"), sum))
-                print(date.toString(dateFormat: "dd/MM/yyyy"), "Daily Total: ", dailyTotal, "sum: ", sum)
+               // print(date.toString(dateFormat: "dd/MM/yyyy"), "Daily Total: ", dailyTotal, "sum: ", sum)
             }
         }
         return dailyAmount.filter { $0 != 0.0 }
@@ -59,7 +58,7 @@ struct ForecastingView: View {
         return data
     }
     
-    func Moving() -> (data: [Double], title: String){
+    func Moving() -> (data: [Double], title: String?){
         let data = dataForecasting()
         let dates = TransactionView()
         let windowSize: Int = 7
@@ -73,7 +72,8 @@ struct ForecastingView: View {
                 }
                 forecasting.append(sum/Double(windowSize))
             }
-            return (forecasting.suffix(7), "Line Chart")
+            //print(forecasting.suffix(7), "Ini data forecasting")
+            return (forecasting.suffix(7), nil)
         }
         else{
             return ([0], "Empty Data")
@@ -96,10 +96,8 @@ struct ForecastingView: View {
             
         }
         let dataActual: [Double] = data.suffix(mae.count)
-        
         for i in 0..<mae.count{
             errorResult+=(abs(mae[i]-dataActual[i]))
-            
         }
         return errorResult/Double(mae.count)
     }
@@ -111,7 +109,7 @@ struct ForecastingView: View {
             VStack{
                 VStack(alignment: .leading){
                     Text("One type of time series forecasting is simple moving average (SMA). SMA is an arithmetic moving average calculated by adding recent prices and then dividing that figure by the number of time periods in the calculation average. \(attributedString)")
-                        .font(.body)
+                        .font(.caption)
                         .padding(.bottom,10)
                     Text("Your result can see below")
                         .font(.body.bold())
@@ -160,7 +158,7 @@ struct SimpleMovingAverage: View{
     
     
     var body: some View{
-        ScrollView{
+        ScrollView(.vertical, showsIndicators: false){
             LineView(data: data, title: title)
                 .padding()
         }

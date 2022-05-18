@@ -72,9 +72,12 @@ struct TransactionView: View {
                         let dailyTotal = section.reduce(0) { $0 + $1.amount }
                         Section(header:
                                     HStack{
-                                        Text( section[0].date!.toString(dateFormat: "dd-MM-yyyy" ))
+                            Text( section[0].date!.toString(dateFormat: "dd-MM-yyyy" ))
+                                .accessibilityLabel("\(section[0].date!, format: .dateTime.day().month().year())")
+                            
                                         Spacer()
-                                        Text("Rp.\(idr(amount: dailyTotal))")
+                            Text("Rp.\(idr(amount: dailyTotal))")
+                                .accessibilityLabel("\(Int(dailyTotal)) Rupiah")
                                     }
                                 )
                         {
@@ -85,39 +88,50 @@ struct TransactionView: View {
                                         Image(systemName: "cart")
                                             .padding()
                                             .foregroundColor(Color(#colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)))
+                                            .accessibilityLabel("Shooping")
                                     case "Transport":
                                         Image(systemName: "car")
                                             .padding()
                                             .foregroundColor(Color(#colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)))
+                                            .accessibilityLabel("Transportaion")
                                     case "Food":
                                         Image(systemName: "archivebox")
                                             .padding()
                                             .foregroundColor(Color(#colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)))
+                                            .accessibilityLabel("Food")
+                                        
                                     case "Health":
                                         Image(systemName: "staroflife")
                                             .padding()
                                             .foregroundColor(Color(#colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)))
+                                            .accessibilityLabel("Health")
                                     case "Donation":
                                         Image(systemName: "heart.circle.fill")
                                             .padding()
                                             .foregroundColor(Color(#colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)))
+                                            .accessibilityLabel("Donation")
                                     case "Entertainment":
                                         Image(systemName: "tv.music.note")
                                             .padding()
                                             .foregroundColor(Color(#colorLiteral(red: 0.5807225108, green: 0.066734083, blue: 0, alpha: 1)))
+                                            .accessibilityLabel("Entertainment")
                                     case "Utilities":
                                         Image(systemName: "bolt")
                                             .padding()
                                             .foregroundColor(Color(#colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)))
+                                            .accessibilityLabel("utilities")
                                     default:
                                         Image(systemName: "tag")
                                             .padding()
                                             .foregroundColor(Color(#colorLiteral(red: 0.5791940689, green: 0.1280144453, blue: 0.5726861358, alpha: 1)))
+                                            .accessibilityLabel("Others")
                                     }
                                     Text(todo.title ?? "")
                                     Spacer()
                                     Text("Rp. \(idr(amount: todo.amount))")
+                                        .accessibilityLabel("\(Int(todo.amount)) Rupiah")
                                 }
+                                
                             }
                             //.onDelete(perform: deleteItems)
                             .onDelete { indexSet in
@@ -133,8 +147,7 @@ struct TransactionView: View {
                 }
                 .sheet(isPresented: $isAddTransaction) {
                     AddTransactionView(title: "", amount: nil, type: "", selectedDate: Date())
-                }
-            } // Vstak 1
+                }            } // Vstak 1
             .navigationTitle("Transaction")
             .toolbar{
                 ToolbarItem(placement: .navigationBarTrailing) {
