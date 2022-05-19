@@ -146,7 +146,8 @@ struct YourDataView: View{
     var body: some View{
         List{
             ForEach(data, id: \.self){ forecast in
-                Text("Rp. \(convert.idr(amount: forecast))").tag(forecast)
+                Text("Rp. \(convert.idr(amount: forecast))").tag(forecast).accessibilityLabel("\(Int(forecast)) Rupiah")
+                
             }
         }
         Spacer()
@@ -201,6 +202,7 @@ struct MAEView: View{
                             .foregroundColor(.primary)
                             .lineLimit(3)
                             .padding(.bottom,1)
+                            .accessibilityLabel("\(Int(getData)) Rupiah")
                         Text("The mean absolute error (MAE) is the average magnitude of the error in a series of forecasts, regardless of direction. It measures accuracy for continuous variables")
                             .font(.body)
                             .foregroundColor(.secondary)

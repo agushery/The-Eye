@@ -93,7 +93,7 @@ struct TransactionView: View {
                                         Image(systemName: "car")
                                             .padding()
                                             .foregroundColor(Color(#colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)))
-                                            .accessibilityLabel("Transportaion")
+                                            .accessibilityLabel("Transportation")
                                     case "Food":
                                         Image(systemName: "archivebox")
                                             .padding()
@@ -156,7 +156,7 @@ struct TransactionView: View {
                     }, label: {
                         HStack{
                             Image(systemName: "plus")
-                            Text("Add")
+                                .accessibilityLabel("Add")
                         }
                         
                     })
