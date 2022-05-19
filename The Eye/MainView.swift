@@ -22,6 +22,5 @@ struct MainView: View {
                     Text("Transaction")
                 }
         }
-        .navigationViewStyle(.stack)
     }
 }
