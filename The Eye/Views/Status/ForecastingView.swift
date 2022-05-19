@@ -109,7 +109,6 @@ struct ForecastingView: View {
             VStack{
                 VStack(alignment: .leading){
                     Text("One type of time series forecasting is simple moving average (SMA). SMA is an arithmetic moving average calculated by adding recent prices and then dividing that figure by the number of time periods in the calculation average. \(attributedString)")
-                        .font(.caption)
                         .padding(.bottom,10)
                     Text("Your result can see below")
                         .font(.body.bold())
@@ -146,7 +145,7 @@ struct YourDataView: View{
     var body: some View{
         List{
             ForEach(data, id: \.self){ forecast in
-                Text("Rp. \(convert.idr(amount: forecast))").tag(forecast).accessibilityLabel("\(Int(forecast)) Rupiah")
+                Text("IDR. \(convert.idr(amount: forecast))").tag(forecast).accessibilityLabel("\(Int(forecast)) Rupiah")
                 
             }
         }
@@ -196,7 +195,7 @@ struct MAEView: View{
                         Text("Your Mean Absolute Error is...")
                             .font(.headline)
                             .foregroundColor(.secondary)
-                        Text("Rp. \(convert.idr(amount: getData))")
+                        Text("IDR. \(convert.idr(amount: getData))")
                             .font(.title)
                             .fontWeight(.black)
                             .foregroundColor(.primary)

@@ -76,7 +76,7 @@ struct TransactionView: View {
                                 .accessibilityLabel("\(section[0].date!, format: .dateTime.day().month().year())")
                             
                                         Spacer()
-                            Text("Rp.\(idr(amount: dailyTotal))")
+                            Text("IDR. \(idr(amount: dailyTotal))")
                                 .accessibilityLabel("\(Int(dailyTotal)) Rupiah")
                                     }
                                 )
@@ -128,7 +128,7 @@ struct TransactionView: View {
                                     }
                                     Text(todo.title ?? "")
                                     Spacer()
-                                    Text("Rp. \(idr(amount: todo.amount))")
+                                    Text("IDR. \(idr(amount: todo.amount))")
                                         .accessibilityLabel("\(Int(todo.amount)) Rupiah")
                                 }
                                 
