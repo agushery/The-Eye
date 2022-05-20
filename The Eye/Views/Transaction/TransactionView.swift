@@ -74,11 +74,16 @@ struct TransactionView: View {
                                     HStack{
                             Text( section[0].date!.toString(dateFormat: "dd-MM-yyyy" ))
                                 .accessibilityLabel("\(section[0].date!, format: .dateTime.day().month().year())")
+                                .font(.title3)
+                                .fontWeight(.black)
                             
                                         Spacer()
                             Text("IDR. \(idr(amount: dailyTotal))")
                                 .accessibilityLabel("\(Int(dailyTotal)) Rupiah")
+                                .font(.title3)
+                                .fontWeight(.black)
                                     }
+
                                 )
                         {
                             ForEach(section, id: \.self) { todo in

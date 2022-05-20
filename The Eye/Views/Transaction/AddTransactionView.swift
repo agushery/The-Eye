@@ -16,6 +16,7 @@ struct AddTransactionView: View {
     @State var amount: Double?
     @State var type: String
     @State var selectedDate: Date
+    @State private var showingAlert = false
     
     
     let types = ["Shopping", "Transport", "Food", "Health", "Donation", "Entertainment", "Utilities","Others"]
@@ -49,22 +50,27 @@ struct AddTransactionView: View {
                     
                 }
                 
-                Button(action: {
-                    let newTransaction = Tb_Transaction(context: moc)
-                    newTransaction.id = UUID()
-                    newTransaction.title = title
-                    newTransaction.type = type
-                    newTransaction.amount = Double(amount!)
-                    newTransaction.date = selectedDate
-                    do {
-                        try self.moc.save()
-                    } catch {
-                        print("whoops \(error.localizedDescription)")
+                Button("Save"){
+                    if title.isEmpty || ((amount?.isNaN) == nil) || type.isEmpty {
+                        showingAlert.toggle()
+                    } else {
+                        let newTransaction = Tb_Transaction(context: moc)
+                        newTransaction.id = UUID()
+                        newTransaction.title = title
+                        newTransaction.type = type
+                        newTransaction.amount = Double(amount!)
+                        newTransaction.date = selectedDate
+                        do {
+                            try self.moc.save()
+                        } catch {
+                            print("whoops \(error.localizedDescription)")
+                        }
+                        self.dismiss.wrappedValue.dismiss()
                     }
-                    self.dismiss.wrappedValue.dismiss()
-                }, label: {
-                    Text("Save")
-                })
+                }
+                .alert("Please fill the data", isPresented: $showingAlert) {
+                    Button("OK", role: .cancel) { }
+                }
             }
             .navigationTitle("Add Transaction")
             .navigationBarTitleDisplayMode(.inline)
