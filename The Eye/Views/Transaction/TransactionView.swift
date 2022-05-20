@@ -72,8 +72,9 @@ struct TransactionView: View {
                         let dailyTotal = section.reduce(0) { $0 + $1.amount }
                         Section(header:
                                     HStack{
-                            Text(section[0].date!.toString(dateFormat: "dd-MM-yyyy" ))
+                            Text( section[0].date!.toString(dateFormat: "dd-MM-yyyy" ))
                                 .accessibilityLabel("\(section[0].date!, format: .dateTime.day().month().year())")
+                            
                                         Spacer()
                             Text("IDR. \(idr(amount: dailyTotal))")
                                 .accessibilityLabel("\(Int(dailyTotal)) Rupiah")
