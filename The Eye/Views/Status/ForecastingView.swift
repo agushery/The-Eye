@@ -12,12 +12,12 @@ struct ForecastingView: View {
     
     @FetchRequest(sortDescriptors: [SortDescriptor(\.date)]) var transactions: FetchedResults<Tb_Transaction>
     @State var selectedValue = 0
-    @State var didOnboarding: Bool = true
+    //@State var didOnboarding: Bool = true
     
     typealias TransactionPrefixSum = [(String, Double)]
     
     var attributedString: AttributedString
-    //    @AppStorage("didOnboarding") var didOnboarding: Bool = true
+    @AppStorage("didOnboarding") var didOnboarding: Bool = true
     
     init() {
         //or like this:
