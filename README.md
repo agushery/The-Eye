@@ -4,7 +4,11 @@
 
 A native iOS App for Z and Millennial Generation that  forecast their expenses based on historical transaction data more easily. Now you don’t have to worry! Manage your finances using your eye. The Eye is free and open source.   
 
-[Join TestFlight Beta](https://testflight.apple.com/join/U5xMXQXd)
+<p align="left">
+	<a href="https://apps.apple.com/us/app/the-eyes/id1624328998">
+		<img src="https://linkmaker.itunes.apple.com/assets/shared/badges/en-gb/appstore-lrg.svg"/>
+	</a>
+</p>
 
 ## About The Eye
 
@@ -12,11 +16,11 @@ Expenditure is an outflow of money that is used to obtain profits in the form of
 
 ## Features
 
-#### Forecasting (line chart and data list)
+### Forecasting (line chart and data list)
 Expenses forecasting is carried out using the simple moving average method which is displayed in the form of line charts and data list
-#### Grouping Data
+### Grouping Data
 Enter your data  and view easily with grouping by date
-#### Margin error with Mean Absolute Error
+### Margin error with Mean Absolute Error
 Every forecast is expected to be accurate, therefore we present the mean absolute error method to calculate the average absolute difference between the actual value and the predicted (forecasting) value.
 
 
@@ -39,6 +43,5 @@ wallabag app is a free and open source project developed by volunteers. Any cont
 
 ## License
 
-[LICENSE](https://sites.google.com/view/theeye-privacy-and-policy/halaman-muka)).
-Some of the used libraries are released under different licenses.
-Linechart provided by https://github.com/AppPear/ChartView
+* [LICENSE](https://sites.google.com/view/theeye-privacy-and-policy/halaman-muka).
+* Linechart provided by https://github.com/AppPear/ChartView
