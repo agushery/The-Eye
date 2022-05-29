@@ -41,7 +41,8 @@ wallabag app is a free and open source project developed by volunteers. Any cont
  * [Report bugs and make suggestions.](https://github.com/agushery/The-Eye/issues)
  * Write some code. Please follow the code style used in the project to make a review process faster.
 
-## License
+## Privacy Policy and License
 
-* [LICENSE](https://sites.google.com/view/theeye-privacy-and-policy/halaman-muka).
+* [PRIVACY and POLICY](https://sites.google.com/view/theeye-privacy-and-policy/halaman-muka).
+* [LICENSE](https://github.com/agushery/The-Eye/blob/main/LICENSE.md)
 * Linechart provided by https://github.com/AppPear/ChartView
