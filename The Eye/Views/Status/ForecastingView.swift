@@ -89,7 +89,7 @@ struct ForecastingView: View {
         var errorResult: Double = 0.0
         for i in 0..<(numberSize-windowSize){
             sum = 0.0
-            for j in i...windowSize {
+            for j in i...(windowSize+1) {
                 sum+=data[j]
             }
             mae.append(sum/Double(windowSize))
